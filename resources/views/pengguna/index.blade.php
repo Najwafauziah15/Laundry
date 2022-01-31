@@ -84,7 +84,6 @@
                                                     {{-- </form> --}}
                                                 </td>
                                             </tr>
-                                            @include('pengguna.edit')
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -97,5 +96,4 @@
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
-@include('pengguna.form')
 @endsection

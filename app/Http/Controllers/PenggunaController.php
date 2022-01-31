@@ -36,16 +36,7 @@ class PenggunaController extends Controller
      */
     public function store(Request $request)
     {
-        $validate = $request->validate([
-            'nama' => 'required',
-            'alamat' => 'required',
-            'jenis_kelamin' => 'required',
-            'tlp' => 'required'
-        ]);
-        
-        Member::create($validate);
-
-        return redirect('/pengguna')->with('success', 'Data Member Berhasil Ditambahkan');
+        //
     }
 
     /**
@@ -77,19 +68,9 @@ class PenggunaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Member $pengguna)
+    public function update(Request $request, $id)
     {
-        //validasi
-        $validate = $request->validate([
-            'nama' => 'required',
-            'alamat' => 'required',
-            'jenis_kelamin' => 'required',
-            'tlp' => 'required'
-        ]);
-
-        Member::where('id',$pengguna->id)
-        ->update($validate);
-        return redirect('/pengguna')->with('success', 'Data Berhasil Di Edit');
+        //
     }
 
     /**
@@ -98,10 +79,8 @@ class PenggunaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Member $pengguna, $id)
+    public function destroy($id)
     {
-        $pengguna = Member::find($id);
-        $pengguna->delete();
-        return redirect('/pengguna')->with('success', 'Data Pengguna Berhasil Dihapus');
+        //
     }
 }
