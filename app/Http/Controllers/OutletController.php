@@ -36,6 +36,15 @@ class OutletController extends Controller
      */
     public function store(Request $request)
     {
+        $validate = $request->validate([
+            'nama' => 'required',
+            'alamat' => 'required',
+            'tlp' => 'required'
+        ]);
+        
+        Outlet::create($validate);
+
+        return redirect('/outlet')->with('success', 'Data Outlet Berhasil Ditambahkan');
     }
 
     /**

@@ -89,7 +89,6 @@
                                                     {{-- </form> --}}
                                                 </td>
                                             </tr>
-                                            {{-- @include('outlet.edit') --}}
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -102,5 +101,5 @@
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
-{{-- @include('outlet.form') --}}
+@include('outlet.form')
 @endsection
