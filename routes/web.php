@@ -7,6 +7,7 @@ use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\UserController;
 
 // Home
 Route::get('/home', [HomeController::class, 'index4']);
@@ -36,3 +37,7 @@ Route::delete('{id}/paket/delete' ,  [PaketController::class, 'destroy']);
 // Member
 Route::resource('pengguna', PenggunaController::class)->middleware('role');
 Route::delete('{id}/pengguna/delete' ,  [PenggunaController::class, 'destroy']);
+
+// Pengguna atau user
+Route::resource('user', UserController::class)->middleware('role');
+Route::delete('{id}/user/delete' ,  [UserController::class, 'destroy']);
