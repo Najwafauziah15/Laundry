@@ -77,9 +77,19 @@ class PenggunaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Member $pengguna)
     {
-        //
+        //validasi
+        $validate = $request->validate([
+            'nama' => 'required',
+            'alamat' => 'required',
+            'jenis_kelamin' => 'required',
+            'tlp' => 'required'
+        ]);
+
+        Member::where('id',$pengguna->id)
+        ->update($validate);
+        return redirect('/pengguna')->with('success', 'Data Berhasil Di Edit');
     }
 
     /**
