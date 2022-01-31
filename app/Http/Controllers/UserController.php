@@ -85,8 +85,22 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
+        $validateData = $request->validate([
+            'name' => ['required', 'min:3', 'max:255'],
+            'username' => ['required', 'min:3', 'unique:users'],
+            'id_outlet' => ['required', 'unique:users'],
+            'password' => ['required', 'min:5', 'max:255'],
+            'role' => 'required'
+        ]);
+
+        //$validateData ['password'] = bcrypt($validateData['password']);
+        $validateData['password'] = Hash::make($validateData['password']);
+
+        User::where('id',$user->id)
+        ->update($validateData);
+        return redirect('/user')->with('success', 'Data Berhasil Di Edit');
     }
 
     /**
