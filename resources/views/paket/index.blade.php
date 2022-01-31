@@ -84,6 +84,7 @@
                                                     {{-- </form> --}}
                                                 </td>
                                             </tr>
+                                            @include('paket.edit')
                                             @endforeach
                                         </tbody>
                                     </table>

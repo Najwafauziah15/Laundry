@@ -79,9 +79,19 @@ class PaketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Paket $paket)
     {
-        //
+        //validasi
+        $validate = $request->validate([
+            'id_outlet' => 'required',
+            'jenis' => 'required',
+            'nama_paket' => 'required',
+            'harga' => 'required'
+        ]);
+
+        Paket::where('id',$paket->id)
+        ->update($validate);
+        return redirect('/paket')->with('success', 'Data Berhasil Di Edit');
     }
 
     /**
