@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistrasiController;
+use App\Http\Controllers\OutletController;
 
 // Home
 Route::get('/home', [HomeController::class, 'index4']);
@@ -21,3 +22,7 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::resource('/registrasi', RegistrasiController::class)->middleware('guest');
 Route::get('/registrasi', [RegistrasiController::class, 'index'])->middleware('guest');
 Route::delete('{id}/registrasi/delete' ,  [RegistrasiController::class, 'destroy']);
+
+// Outlet
+Route::resource('outlet', OutletController::class)->middleware('role');
+Route::delete('{id}/outlet/delete' ,  [OutletController::class, 'destroy']);
