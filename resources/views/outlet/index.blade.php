@@ -89,6 +89,7 @@
                                                     {{-- </form> --}}
                                                 </td>
                                             </tr>
+                                            @include('outlet.edit')
                                             @endforeach
                                         </tbody>
                                     </table>
