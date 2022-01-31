@@ -36,7 +36,16 @@ class PenggunaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate = $request->validate([
+            'nama' => 'required',
+            'alamat' => 'required',
+            'jenis_kelamin' => 'required',
+            'tlp' => 'required'
+        ]);
+        
+        Member::create($validate);
+
+        return redirect('/pengguna')->with('success', 'Data Member Berhasil Ditambahkan');
     }
 
     /**
