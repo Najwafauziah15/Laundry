@@ -84,6 +84,7 @@
                                                     {{-- </form> --}}
                                                 </td>
                                             </tr>
+                                            @include('pengguna.edit')
                                             @endforeach
                                         </tbody>
                                     </table>
