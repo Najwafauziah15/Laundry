@@ -98,8 +98,10 @@ class PenggunaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Member $pengguna, $id)
     {
-        //
+        $pengguna = Member::find($id);
+        $pengguna->delete();
+        return redirect('/pengguna')->with('success', 'Data Pengguna Berhasil Dihapus');
     }
 }
