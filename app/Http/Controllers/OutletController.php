@@ -86,7 +86,10 @@ class OutletController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Outlet $outlet, $id)
     {
+        $outlet = Outlet::find($id);
+        $outlet->delete();
+        return redirect('/outlet')->with('success', 'Data Outlet Berhasil Dihapus');
     }
 }
