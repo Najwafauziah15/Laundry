@@ -44,6 +44,12 @@
                                         <div class="col-md-6 col-sm-6 col-xs-6 form-group">
                                             <label for="" class="control-label col-md-6 col-sm-6 col-xs-6">Outlet</label>
                                             <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <input type="text" class="date-picker form-control col-md-12 col-xs-12" value="{{ auth()->user()->id_outlet }}" name="id_outlet" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-6 form-group">
+                                            <label for="" class="control-label col-md-6 col-sm-6 col-xs-6">Pengguna</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
                                                 <input type="text" class="date-picker form-control col-md-12 col-xs-12" value="{{ auth()->user()->id }}" name="id_outlet" readonly>
                                             </div>
                                         </div>
@@ -163,9 +169,6 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    {{-- <tr>
-                                                        <td colspan="6" style="text-align: center"><i>Belum Ada Data</i></td>
-                                                    </tr> --}}
                                                 </tbody>
                                                 </table>
                                             </div>
@@ -175,12 +178,6 @@
                                         <div class="row" style="text-align: right; margin-bottom:10px">
                                             <div class="col-md-12">
                                                 <div class="col-md-12 col-sm-12 col-xs-12 col-md-offset-6" style="text-align: right">
-                                                    {{-- <label for="" class="control-labe col-sm-3 col-xs-12 col-md-6 col-xs-12">
-                                                        Total Harga
-                                                    </label>
-                                                    <div class="col-md-3 col-sm-3 col-xs-12" style="text-align: right;margin-right:0;padding-right:0">
-                                                        <input type="text" name="sub_total" id="totalHarga" class="form-control col-md-6 col-xs-12" required>
-                                                    </div> --}}
                                                     <div class="card">
                                                         <div class="card-body bg-dark">
                                                             <h5 style="color: white; text-align:center">Total Harga</h5>
@@ -192,6 +189,33 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                        {{-- status --}}
+                                        <div class="col-md-6 col-sm-6 col-xs-6 form-group">
+                                            <label for="" class="control-label col-md-6 col-sm-6 col-xs-6"> Status Barang </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <select name="status" id="" class=" form-control col-md-12 col-xs-12">
+                                                    <option value="">-pilih-</option>
+                                                        <option name="status" value="baru">Baru</option>
+                                                        <option name="status" value="proses">Proses</option>
+                                                        <option name="status" value="selesai">Selesai</option>
+                                                        <option name="status" value="diambil">Di Ambil</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        {{-- dibayar belum --}}
+                                        <div class="col-md-6 col-sm-6 col-xs-6 form-group">
+                                            <label for="" class="control-label col-md-6 col-sm-6 col-xs-6"> Status Pembayaran </label>
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <select name="dibayar" id="" class=" form-control col-md-12 col-xs-12">
+                                                    <option value="">-pilih-</option>
+                                                        <option name="dibayar" value="dibayar">Di Bayar</option>
+                                                        <option name="dibayar" value="belum_dibayar">Belum Di Bayar</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
                                         <div class="row">
                                             <div class="col-md-12 col-sm-6 col-xs-12" style="text-align: right;margin-right:0;padding-right:0">
                                                 <div class="col-md-12 col-sm-9 col-xs-12">
@@ -281,9 +305,9 @@
         data +='<tr>';
         data +='<td>'+namapaket+'</td>';
         data +='<td>'+harga+'</td>';
-        data +='<td><input type="number" value="1" min="1" name="jumlah[]" class="qty"></td>';
+        data +='<td><input type="number" value="1" min="1" name="qty[]" class="qty"></td>';
         data +='<td>'+jenis+'</td>';
-        data +='<input type="hidden" name="barang_id[]" value="'+idPaket+'">'
+        data +='<input type="hidden" name="id_paket[]" value="'+idPaket+'">'
         // data +='<input type="hidden" name="sub_total[]" value="'+harga*parseInt($('#qty_barang').val())+'">'
         // data +='<td><input type="number" value="1" name="qty[]" class="qty"></td>';
         // data +='<td><span class="subTotal">'+harga+'</span></td>';
