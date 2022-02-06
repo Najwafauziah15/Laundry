@@ -87,7 +87,7 @@
                                             <option name="role" value="admin">Administrator</option>
                                             <option name="role" value="kasir">Kasir</option>
                                             <option name="role" value="owner">Owner</option>
-                                            </select>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="col-lg-12">

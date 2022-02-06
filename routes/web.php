@@ -12,7 +12,6 @@ use App\Http\Controllers\UserController;
 
 // Home
 Route::get('/home', [HomeController::class, 'index4']);
-// Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('role');
 Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('role');
 Route::get('/homeOwner', [HomeController::class, 'index3'])->name('homeOwner');
 Route::get('/homeKasir', [HomeController::class, 'index2'])->name('homeKasir');
@@ -25,7 +24,6 @@ Route::post('/logout', [LoginController::class, 'logout']);
 // Registrasi
 Route::resource('/registrasi', RegistrasiController::class)->middleware('guest');
 Route::get('/registrasi', [RegistrasiController::class, 'index'])->middleware('guest');
-Route::delete('{id}/registrasi/delete' ,  [RegistrasiController::class, 'destroy']);
 
 // Outlet
 Route::resource('outlet', OutletController::class)->middleware('role');

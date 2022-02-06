@@ -26,19 +26,115 @@
                                         <div class="col-md-6 col-sm-6 col-xs-6 form-group">
                                             <label for="" class="control-label col-md-6 col-sm-6 col-xs-6"> Tanggal Pembelian</label>
                                             <div class="col-md-6 col-sm-6 col-xs-6">
-                                                <input type="date" class="date-picker form-control col-md-12 col-xs-12" value="{{ date('Y-m-d') }}" name="tanggal_masuk" required>
+                                                <input type="date" class="date-picker form-control col-md-12 col-xs-12" value="{{ date('Y-m-d') }}" name="tgl" required>
                                             </div>
                                         </div>
-                                    
                                         <div class="col-md-6 col-sm-6 col-xs-6 form-group">
-                                            <label for="" class="control-label col-md-6 col-sm-6 col-xs-6"> Pelanggan </label>
+                                            <label for="" class="control-label col-md-6 col-sm-6 col-xs-6"> Batas Waktu </label>
                                             <div class="col-md-6 col-sm-6 col-xs-6">
-                                                <select name="pemasok_id" id="" class=" form-control col-md-12 col-xs-12">
-                                                    <option value="">-pilih-</option>
-                                                    @foreach ($member as $o)
-                                                        <option value="{{ $o->id }}">{{ $o->nama }}</option>
-                                                    @endforeach
-                                                </select>
+                                                <input type="date" class="date-picker form-control col-md-12 col-xs-12" value="" name="batas_waktu">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-6 form-group">
+                                            <label for="" class="control-label col-md-6 col-sm-6 col-xs-6"> Tanggal Pembayaran</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <input type="date" class="date-picker form-control col-md-12 col-xs-12" value="" name="tgl_bayar">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 col-sm-6 col-xs-6 form-group">
+                                            <label for="" class="control-label col-md-6 col-sm-6 col-xs-6">Outlet</label>
+                                            <div class="col-md-6 col-sm-6 col-xs-6">
+                                                <input type="text" class="date-picker form-control col-md-12 col-xs-12" value="{{ auth()->user()->id }}" name="id_outlet" readonly>
+                                            </div>
+                                        </div>
+
+                                        {{-- form input pembeli --}}
+                                        <div class="card m-2">
+                                            <div class="card-header">
+                                                <H4>Pilih Pelanggan</H4>
+                                            </div>
+                                            <div class="card-body">
+                                                    <div class="card-body">
+                                                        <div class="form-group mb-3">
+                                                            <label for="id" class="form-label">ID Pelanggan</label>
+                                                            <input type="text" name="id" id="id" class="form-control" placeholder="ID Pelanggan" readonly>
+                                                        </div>
+                                                        <div class="form-group mb-3">
+                                                            <label for="nama" class="form-label">Nama Pelanggan</label>
+                                                            <input type="text" name="nama" id="nama" class="form-control" placeholder="Nama Pelanggan" readonly>
+                                                        </div>
+                                                        <div class="form-group mb-3">
+                                                            <label for="alamat" class="form-label">Alamat Pelanggan</label>
+                                                            <input type="text" name="alamat" id="alamat" class="form-control" placeholder="Alamat Pelanggan" readonly>
+                                                        </div>
+                                                        <div class="form-group mb-3">
+                                                            <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                                                            <input type="text" name="jenis_kelamin" id="jenis_kelamin" class="form-control" placeholder="Jenis Kelamin" readonly>
+                                                        </div>
+                                                        <div class="form-group mb-3">
+                                                            <label for="tlp" class="form-label">No Telepon</label>
+                                                            <input type="text" name="tlp" id="tlp" class="form-control" placeholder="No Telepon" readonly>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" data-toggle="modal" data-target="#pilihPelanggan" class="btn btn-outline-info">Tambah Pelanggan</button>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
+
+                                        {{-- modal Paket --}}
+                                        <div class="modal fade" id="pilihPelanggan" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h3 class="modal-title" id="exampleModalLongTitle">
+                                                        PILIH MEMBER  
+                                                        </h3>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <div class="table-responsive" style="padding-top:0px ">
+                                                                            <table id="tbl-pelanggan" class="table table-striped table-bordered no-wrap mt--4">
+                                                                                <thead>
+                                                                                    <tr>
+                                                                                        <th>No</th>
+                                                                                        <th>ID Member</th>
+                                                                                        <th>Nama</th>
+                                                                                        <th>Alamat</th>
+                                                                                        <th>Jenis Kelamin</th>
+                                                                                        <th>No Telepon</th>
+                                                                                        <th>Aksi</th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    @foreach ($member as $m)
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                            {{ $i=(isset($i)?++$i:$i=1) }}
+                                                                                        </td>
+                                                                                        <td>{{ $m->id }}</td>
+                                                                                        <td>{{ $m->nama }}</td>
+                                                                                        <td>{{ $m->alamat }}</td>
+                                                                                        <td>{{ $m->jenis_kelamin }}</td> 
+                                                                                        <td>{{ $m->tlp }}</td> 
+                                                                                        <td><button class="pilih-pelanggan" type="button">Pilih</button></td>
+                                                                                    </tr>
+                                                                                    @endforeach
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     
@@ -138,7 +234,7 @@
                                                                                     <tr>
                                                                                         <td>
                                                                                             {{ $i=(isset($i)?++$i:$i=1) }}
-                                                                                            <input type="hidden" class="idBarang" value="{{ $pk->id }}">
+                                                                                            <input type="hidden" class="idPaket" value="{{ $pk->id }}">
                                                                                         </td>
                                                                                         <td>{{ $pk->outlet->nama }}</td>
                                                                                         <td>{{ $pk->jenis }}</td>
@@ -175,39 +271,40 @@
     let totalHarga = 0;
     function tambahBarang(a){
         let d = $(a).closest('tr');
-        let kodeBarang = d.find('td:eq(1)').text();
-        let namaBarang = d.find('td:eq(2)').text();
-        let hargaBarang = d.find('td:eq(3)').text();
-        let idBarang = d.find('.idBarang').val();
-        // let idBarang = $(a).data('.idBarang');
+        let namapaket = d.find('td:eq(3)').text();
+        let harga = d.find('td:eq(4)').text();
+        let jenis = d.find('td:eq(2)').text();
+        let idPaket = d.find('.idPaket').val();
+        // let idPaket = $(a).data('.idPaket');
         let data = '';
         let tbody = $('#tblTransaksi tbody tr td').text();
         data +='<tr>';
-        data +='<td>'+kodeBarang+'</td>';
-        data +='<td>'+namaBarang+'</td>';
-        data +='<td>'+hargaBarang+'</td>';
-        data +='<input type="hidden" name="barang_id[]" value="'+idBarang+'">'
-        data +='<input type="hidden" name="harga_beli[]" value="'+hargaBarang+'">'
-        // data +='<input type="hidden" name="sub_total[]" value="'+hargaBarang*parseInt($('#qty_barang').val())+'">'
-        // data +='<td><input type="number" value="1" name="qty[]" class="qty"></td>';
+        data +='<td>'+namapaket+'</td>';
+        data +='<td>'+harga+'</td>';
         data +='<td><input type="number" value="1" min="1" name="jumlah[]" class="qty"></td>';
-        // data +='<td><span class="subTotal">'+hargaBarang+'</span></td>';
-        data +='<td><input type="text" readonly name="sub_total[]" class="subTotal" value="'+hargaBarang+'"></td>'
+        data +='<td>'+jenis+'</td>';
+        data +='<input type="hidden" name="barang_id[]" value="'+idPaket+'">'
+        // data +='<input type="hidden" name="sub_total[]" value="'+harga*parseInt($('#qty_barang').val())+'">'
+        // data +='<td><input type="number" value="1" name="qty[]" class="qty"></td>';
+        // data +='<td><span class="subTotal">'+harga+'</span></td>';
+        data +='<td><input type="text" name="biaya_tambahan[]" class="biayaTambahan"></td>'
+        data +='<td><input type="text" name="diskon[]" class="diskon"></td>'
+        data +='<td><input type="text" name="pajak[]" class="pajak"></td>'
         data +='<td><button type="button" class="btnRemoveBarang btn btn-danger" >hapus</button></td>';
         data +='</tr>'
         if(tbody == 'Belum ada data') $('#tblTransaksi tbody tr').remove();
 
         $('#tblTransaksi tbody').append(data);
-        totalHarga += parseFloat(hargaBarang);
+        totalHarga += parseFloat(harga);
         $('#totalHarga').val(totalHarga);
         $('#tblBarangModal').modal('hide');
     }
 
     function calcSubTotal(a){
         let qty = parseInt($(a).closest('tr').find('.qty').val());
-        let hargaBarang = parseFloat($(a).closest('tr').find('td:eq(2)').text());
+        let harga = parseFloat($(a).closest('tr').find('td:eq(2)').text());
         let subTotalAwal = parseFloat($(a).closest('tr').find('.subTotal').val());
-        let subTotal = qty * hargaBarang;
+        let subTotal = qty * harga;
         totalHarga += subTotal - subTotalAwal;
         $(a).closest('tr').find('.subTotal').text(subTotal);
         $('#totalHarga').val(totalHarga);
@@ -215,7 +312,25 @@
     }
 
     $(function(){
+        $('#tbl-pelanggan').DataTable()
         $('#tblBarang2').DataTable();
+
+        //INPUT KE FORM PELANGGAN
+        $('#tbl-pelanggan').on('click', '.pilih-pelanggan', function(){
+                alert('berhasil masuk')
+                let ele = $(this).closest('tr')
+                let id = ele.find('td:eq(1)').text()
+                let nama = ele.find('td:eq(2)').text()
+                let alamat = ele.find('td:eq(3)').text()
+                let jenis_kelamin = ele.find('td:eq(4)').text()
+                let tlp = ele.find('td:eq(5)').text()
+                $('#id').val(id)
+                $('#nama').val(nama)
+                $('#alamat').val(alamat)
+                $('#jenis_kelamin').val(jenis_kelamin)
+                $('#tlp').val(tlp)
+                $('#pilihPelanggan').modal("hide")
+        })
 
         //pemilihan Barang
         $('#tblBarangModal').on('click','.pilihBarangBtn',function(){
