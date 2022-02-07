@@ -48,7 +48,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" id="btn-submit" class="btn btn-info">Edit Paket</button>
+                                        <button type="submit" id="btn-submit" class="btn btn-info">Update</button>
                                     </div>
                                 </form>
                             </div>

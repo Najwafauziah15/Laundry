@@ -7,7 +7,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header modal-colored-header bg-info">
-                                <h4 class="modal-title" id="info-header-modalLabel">Tambah Data Pengguna</h4>
+                                <h4 class="modal-title" id="info-header-modalLabel">Edit Data Pengguna</h4>
                                 <button type="button" class="close" data-dismiss="modal"
                                     aria-hidden="true">×</button>
                             </div>
@@ -25,10 +25,6 @@
                                         <div class="form-group mb-3">
                                             <label for="username" class="form-label">Username</label>
                                             <input type="text" id="username" name="username" value="{{ $u->username }}" class="form-control" placeholder="Username" required>
-                                        </div>
-                                        <div class="form-group mb-3">
-                                            <label for="password" class="form-label">Password</label>
-                                            <input type="text" id="password" name="password" value="{{ $u->password }}" class="form-control" placeholder="Password" required>
                                         </div>
                                         <div class="form-group mb3">
                                             <select class="form-control form-select-lg mb-3" aria-label=".form-select-lg example" id="id_outlet" name="id_outlet">
@@ -48,7 +44,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" id="btn-submit" class="btn btn-info">Edit Outlet</button>
+                                        <button type="submit" id="btn-submit" class="btn btn-info">Update</button>
                                     </div>
                                 </form>
                             </div>

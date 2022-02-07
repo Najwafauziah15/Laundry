@@ -7,7 +7,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header modal-colored-header bg-info">
-                                <h4 class="modal-title" id="info-header-modalLabel">Tambah Data Outlet</h4>
+                                <h4 class="modal-title" id="info-header-modalLabel">Edit Data Outlet</h4>
                                 <button type="button" class="close" data-dismiss="modal"
                                     aria-hidden="true">×</button>
                             </div>
@@ -32,7 +32,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button type="submit" id="btn-submit" class="btn btn-info">Edit Outlet</button>
+                                        <button type="submit" id="btn-submit" class="btn btn-info">Update</button>
                                     </div>
                                 </form>
                             </div>
