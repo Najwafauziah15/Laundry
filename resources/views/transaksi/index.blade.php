@@ -22,7 +22,7 @@
                             {{-- form atas 1 --}}
                                 <form action="{{ route('transaksi.store') }}" method="post" id="formTransaksi" class="form-horizontal form-label-left input_mask">
                                     @csrf
-                                    
+                                    <div class="row">
                                         <div class="col-md-6 col-sm-6 col-xs-6 form-group">
                                             <label for="" class="control-label col-md-6 col-sm-6 col-xs-6"> Tanggal Pembelian</label>
                                             <div class="col-md-6 col-sm-6 col-xs-6">
@@ -53,6 +53,7 @@
                                                 <input type="text" class="date-picker form-control col-md-12 col-xs-12" value="{{ auth()->user()->id }}" name="id_outlet" readonly>
                                             </div>
                                         </div>
+                                    </div>
 
                                         {{-- form input pembeli --}}
                                         <div class="card m-2">
