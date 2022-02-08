@@ -1,5 +1,5 @@
-@extends('template.header', ['title'=>'LAUNA'])
- 
+@extends('kasir.template.header', ['title'=>'LAUNA'])
+
 @section('content')
         <!-- ============================================================== -->
         <!-- Page wrapper  -->
@@ -11,7 +11,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">DATA USER</h3>
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">DATA MEMBER</h3>
                     </div>
                 </div>
                 <div class="row">
@@ -50,41 +50,41 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                                <div class="table-responsive" style="padding-top:0px ">
-                                    <table id="zero_config" class="table table-striped table-bordered no-wrap mt--4">
+                                <div class="table-responsive">
+                                    <table id="zero_config" class="table table-striped table-bordered no-wrap">
                                         <thead>
                                             <tr>
                                                 <th>No</th>
                                                 <th>Nama</th>
-                                                <th>Username</th>
-                                                <th>ID Outlet</th>
-                                                <th>Role</th>
+                                                <th>Alamat</th>
+                                                <th>Jenis Kelamin</th>
+                                                <th>No.Telepon</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($user as $u)
+                                            @foreach ($pengguna as $p)
                                             <tr>
                                                 <td>{{ $i=(isset($i)?++$i:$i=1) }}</td>
-                                                <td>{{ $u->name }}</td>
-                                                <td>{{ $u->username }}</td>
-                                                <td>{{ $u->id_outlet }}</td> 
-                                                <td>{{ $u->role }}</td> 
+                                                <td>{{ $p->nama }}</td>
+                                                <td>{{ $p->alamat }}</td>
+                                                <td>{{ $p->jenis_kelamin }}</td>
+                                                <td>{{ $p->tlp }}</td> 
                                                 <td> 
-                                                    {{-- delete --}}
-                                                    <form action="{{ url($u->id. '/user/delete')}}" method="POST">
+                                                    {{-- delete-mobil --}}
+                                                    <form action="{{ url($p->id. '/pengguna2/delete')}}" method="POST">
                                                         @csrf
                                                         @method("delete")
                                                         <button type="submit" class="btn btn-outline-danger" onclick="return confirm('apakah data mau dihapus')">hapus</button>
                                                     </form>
                                                     {{-- <form action="{{ url($b->id. '/barang/edit')}}" method="GET"> --}}
-                                                    <button type="submit" class="btn btn-outline-success mt-1" data-toggle="modal" data-target="#formEditModal{{ $u->id }}">
+                                                    <button type="submit" class="btn btn-outline-success mt-1" data-toggle="modal" data-target="#formEditModal{{ $p->id }}">
                                                         Edit
                                                     </button>
                                                     {{-- </form> --}}
                                                 </td>
                                             </tr>
-                                            @include('user.edit')
+                                            @include('kasir.pengguna.edit')
                                             @endforeach
                                         </tbody>
                                     </table>
@@ -97,5 +97,5 @@
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
-@include('user.form')
+@include('kasir.pengguna.form')
 @endsection

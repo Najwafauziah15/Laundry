@@ -16,8 +16,8 @@ class UserController extends Controller
     public function index()
     {
         $data['user'] = User::all();
-        $outlet['outlet'] = Outlet::all();
-        return view('user.index', $data, $outlet);
+        $data['outlet'] = Outlet::all();
+        return view('user.index', $data);
     }
 
     /**
@@ -41,7 +41,7 @@ class UserController extends Controller
         $validateData = $request->validate([
             'name' => ['required', 'min:3', 'max:255'],
             'username' => ['required', 'min:3', 'unique:users'],
-            'id_outlet' => ['required', 'unique:users'],
+            'id_outlet' => 'required',
             'password' => ['required', 'min:5', 'max:255'],
             'role' => 'required'
         ]);
@@ -91,12 +91,12 @@ class UserController extends Controller
             'name' => ['required', 'min:3', 'max:255'],
             'username' => ['required', 'min:3'],
             'id_outlet' => ['required'],
-            'password' => ['required', 'min:5', 'max:255'],
             'role' => 'required'
         ]);
 
-        //$validateData ['password'] = bcrypt($validateData['password']);
-        $validateData['password'] = Hash::make($validateData['password']);
+        if ($request->has('password')&& $request->password !=''){
+            $validateData['password'] = Hash::make($request->password);
+        }
 
         User::where('id',$user->id)
         ->update($validateData);

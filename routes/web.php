@@ -7,6 +7,7 @@ use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\Pengguna2Controller;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 
@@ -36,6 +37,10 @@ Route::delete('{id}/paket/delete' ,  [PaketController::class, 'destroy']);
 // Member
 Route::resource('pengguna', PenggunaController::class)->middleware('role');
 Route::delete('{id}/pengguna/delete' ,  [PenggunaController::class, 'destroy']);
+
+// Member2
+Route::resource('pengguna2', Pengguna2Controller::class)->middleware('role');
+Route::delete('{id}/pengguna2/delete' ,  [Pengguna2Controller::class, 'destroy']);
 
 // Pengguna atau user
 Route::resource('user', UserController::class)->middleware('role');

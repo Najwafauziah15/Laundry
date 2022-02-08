@@ -12,7 +12,7 @@
                                     aria-hidden="true">×</button>
                             </div>
                             <div class="modal-body">
-                                <form action="{{ route('pengguna.update', $p->id) }}" method="POST">
+                                <form action="{{ route('pengguna2.update', $p->id) }}" method="POST">
                                     @csrf
                                     @method('patch')
                                     <div id="method"></div>
