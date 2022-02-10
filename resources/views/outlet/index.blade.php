@@ -74,7 +74,7 @@
                                                     <form action="{{ url($o->id. '/outlet/delete')}}" method="POST">
                                                         @csrf
                                                         @method("delete")
-                                                        <button type="submit" class="btn btn-outline-danger" onclick="return confirm('apakah data mau dihapus')">hapus</button>
+                                                        <button type="submit" class="btn btn-outline-danger delete">hapus</button>
                                                     </form>
                                                     @else
                                                     <div class="">
@@ -104,3 +104,30 @@
             <!-- ============================================================== -->
 @include('outlet.form')
 @endsection
+@push('script')
+    <script>
+        $('.delete').click(function(e){
+            e.preventDefault()
+            let data = $(this).closest('form').find('button').text()
+            Swal.fire({
+            title: 'Are you sure?',
+            text: "Kamu akan menghapus ini?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes'
+            })
+            .then((result) => {
+            if (result.isConfirmed) {
+                $(this).closest('form').submit()
+                Swal.fire(
+                'Deleted!',
+                'Your file has been deleted.',
+                'success'
+                )
+            }
+            })
+        })
+    </script>
+@endpush

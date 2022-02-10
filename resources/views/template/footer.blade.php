@@ -51,7 +51,10 @@
     <script src="{{ asset('src') }}/assets/extra-libs/prism/prism.js"></script>
 
     {{-- alert sweet --}}
-    <script src="{{ asset('assets') }}js/sweetalert.min.js"></script>
+    <script src="{{ asset('js') }}/dist/sweetalert2.all.min.js"></script>
+    <script src="{{ asset('js') }}/dist/sweetalert2.all.js"></script>
+    <script src="{{ asset('js') }}/dist/sweetalert2.min.js"></script>
+    <script src="{{ asset('js') }}/dist/sweetalert2.js"></script>
 
     @stack('script')
 </body>

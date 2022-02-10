@@ -31,6 +31,10 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
+{{-- alert sweet --}}   
+    <link href="{{ asset('js') }}/dist/sweetalert2.css" rel="stylesheet">
+    <link href="{{ asset('js') }}/dist/sweetalert2.min.css" rel="stylesheet">
+
 </head>
 
 <body>

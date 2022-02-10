@@ -191,7 +191,7 @@
                             aria-expanded="false"><i class="icon-notebook"></i><span
                                 class="hide-menu">Laporan</span></a></li>
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/pengguna2"
-                            aria-expanded="false"><i class="icon-notebook"></i><span
+                            aria-expanded="false"><i class="icon-user"></i><span
                                 class="hide-menu">Member</span></a></li> 
                         @else
                         <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/login"
