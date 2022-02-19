@@ -12,8 +12,34 @@
                 <div class="row">
                     {{-- <div class="col-lg-6"> --}}
                         <div class="card">
+                            @if (session('success'))
+                            <div class="alert alert-success" role="alert" id="success-alert">
+                                {{ session('success') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            @endif
+                            @if ($errors->any())
+                            <div class="card-header">
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                    <button type="button" class="colse" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            </div>
+                            @endif
+                            <form action="/transaksi" method="post">
+                            @csrf
                             @include('transaksi.form')
                             @include('transaksi.data')
+                            <input type="hidden" name="id_member" id="id_member">
+                            </form>
                         </div> <!-- end card-->
                     {{-- </div> <!-- end col --> --}}
                 </div>
@@ -100,8 +126,8 @@
     })
 
     //remove paket
-    $('#tblTransaksi').on('click','btnRemovePaket',function(){
-        let subTotalAwal = parseFloat($(this).closest(' tr').find('.subTotal').text());
+    $('#tblTransaksi').on('click','.btnRemovePaket',function(){
+        let subTotalAwal = parseFloat($(this).closest('tr').find('.subTotal').text());
         subtotal -= subTotalAwal
         total -= subTotalAwal;
         $currentRow = $(this).closest('tr').remove();

@@ -15,8 +15,7 @@
         </li>
     </ul>
     {{-- end judul atas --}}
-    {{-- form start --}}
-    <form action="">
+    {{-- isi form --}}
         <div class="tab-content">
             <div class="tab-pane show active" id="dataLaundry">
                 <div class="h3">Data</div>
@@ -33,7 +32,7 @@
                 <div class="col-md-6 col-sm-6 col-xs-6 form-group">
                     <label for="" class="control-label col-md-6 col-sm-6 col-xs-6"> Estimasi Selesai </label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
-                        <input type="date" class="date-picker form-control col-md-12 col-xs-12" name="tgl" required>
+                        <input type="date" class="date-picker form-control col-md-12 col-xs-12" name="batas_waktu" required>
                     </div>
                 </div>
                 {{-- button tambah Pelanggan --}}
@@ -84,7 +83,7 @@
                                     <label for="">Pembayaran</label>
                                     <input type="text" name="bayar" class="form-control" id="" style="width:170px" value="0">
                                     <div class="">
-                                        <button class="btn btn-outline-primary" style="margin-top:10px;width170px">Bayar</button>
+                                        <button type="submit" class="btn btn-outline-primary" style="margin-top:10px;width170px">Bayar</button>
                                     </div>
                                 </td>
                             </tr>
@@ -97,6 +96,10 @@
                                     <input type="number" name="pajak" value="0" min="0" class="qty" id="pajak-persen" size="2" style="width: 40px">
                                 </td>
                                 <td><span id="pajak-harga">0</span></td>
+                            </tr>
+                            <tr>
+                                <td colspan="3" align="right">Bayar Tambahan</td>
+                                <td><input type="number" name="biaya_tambahan" value="0" id="biaya_tambahan" style="width:140px"></td>
                             </tr>
                             <tr style="background-color: rgb(123, 75, 255);color:white;font-weight:bold;font-size:1em">
                                 <td colspan="3" align="right">Total Bayar Akhir</td>
@@ -146,7 +149,7 @@
                                                     <tr>
                                                         <td>
                                                             {{ $i=(isset($i)?++$i:$i=1) }}
-                                                            <input type="hidden" class="idMember" value="{{ $m->id }}">
+                                                            <input type="hidden" class="idMember" name="id_member" value="{{ $m->id }}">
                                                         </td>
                                                         <td>{{ $m->nama }}</td>
                                                         <td>{{ $m->alamat }}</td>
@@ -200,8 +203,8 @@
                                                     @foreach ($paket as $p)
                                                     <tr>
                                                         <td>
-                                                            {{ $i=(isset($i)?++$i:$i=1) }}
-                                                            <input type="hidden" class="idPaket" name="idPaket" value="{{ $p->id }}">
+                                                            {{$j=(isset($j)?++$j:$j=1)}}
+                                                            <input type="hidden" class="idPaket" value="{{ $p->id }}">
                                                         </td>
                                                         <td>{{ $p->nama_paket }}</td>
                                                         <td>{{ $p->jenis }}</td>
@@ -221,6 +224,5 @@
             </div>
         </div>
         {{-- end modal member --}}
-    </form>
 
 </div> <!-- end card-body-->
