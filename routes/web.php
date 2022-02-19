@@ -46,5 +46,5 @@ Route::delete('{id}/pengguna2/delete' ,  [Pengguna2Controller::class, 'destroy']
 Route::resource('user', UserController::class)->middleware('role');
 Route::delete('{id}/user/delete' , [UserController::class, 'destroy']);
 
-// Transaksi    
+// Transaksi
 Route::resource('transaksi', TransaksiController::class);
