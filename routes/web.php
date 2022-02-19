@@ -49,6 +49,7 @@ Route::delete('{id}/user/delete' , [UserController::class, 'destroy']);
 
 // Transaksi
 Route::resource('/transaksi', TransaksiController::class)->middleware('auth')->middleware('role');
+// Route::post('/transaksi/store', [TransaksiController::class, 'store'])->middleware('auth')->middleware('role');
 
 // Laporan
 Route::get('laporan', [LaporanController::class, 'index'])->middleware('auth');

@@ -27,6 +27,7 @@ class CreateTransaksiTable extends Migration
             $table->enum('status',['baru','proses','selesai','diambil']);
             $table->enum('dibayar',['dibayar','belum_dibayar']);
             $table->foreignId('id_user')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->timestamps();
         });
     }
 

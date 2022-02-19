@@ -20,7 +20,7 @@
                                         <input type="hidden" id="id" name="id">
                                         <div class="form-group mb-3">
                                             <label for="id_outlet" class="form-label">ID Outlet</label>
-                                            <input type="text" id="nama_paket" name="nama_paket" value="{{ $pk->id_outlet }}" class="form-control" placeholder="Nama Paket" readonly>
+                                            <input type="text" id="id_outlet" name="id_outlet" value="{{ $pk->id_outlet }}" class="form-control" placeholder="Nama Paket" readonly>
                                         </div>
                                         <div class="form-group mb-3">
                                             <label for="jenis" class="form-label">Jenis</label>

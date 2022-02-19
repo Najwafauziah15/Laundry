@@ -42,6 +42,8 @@ class TransaksiController extends Controller
      */
     public function store(StoreTransaksiRequest $request)
     {
+        // dd($request);
+        // $request->validate();
         $request['id_outlet'] = auth()->user()->id_outlet;
         $request['kode_invoice'] = $this->generateKodeInvoice();
         $request['tgl_bayar'] = ($request->bayar == 0?NULL:date('Y-m-d H:i:s'));
@@ -67,7 +69,7 @@ class TransaksiController extends Controller
             ]);
         }
 
-        return redirect('/transaksi')->with('success','Input Berhasil');
+        return redirect('/transaksi')->with('success','Input Transaksi Berhasil');
     }
 
     /**

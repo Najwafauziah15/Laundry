@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Detail_Transaksi;
+
 
 class LaporanController extends Controller
 {
