@@ -19,12 +19,7 @@
                                         <input type="hidden" id="id" name="id">
                                         <div class="form-group mb3">
                                             <label for="id_outlet" class="form-label">ID Outlet</label>
-                                            <select class="form-control form-select-lg mb-3" aria-label=".form-select-lg example" id="id_outlet" name="id_outlet">
-                                                <option selected>Pilih Outlet</option>
-                                                @foreach ($outlet as $o )
-                                                <option value="{{ $o->id }}">{{ $o->nama }}</option>
-                                                @endforeach
-                                            </select>
+                                            <input type="text" id="nama_paket" name="nama_paket" value="{{ auth()->user()->id_outlet }}" class="form-control" placeholder="Nama Paket" readonly>
                                         </div>
                                         <div class="form-group mb-3">
                                             <label for="jenis" class="form-label">Jenis</label>

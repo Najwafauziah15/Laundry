@@ -53,7 +53,7 @@
                 {{-- button tambah Paket --}}
                 <div class="col-md-6 col-sm-6 col-xs-6 form-group">
                     <div class="col-md-6 col-sm-6 col-xs-6">
-                        <button type="button" class="btn btn-outline-secondary mr-2" id="memberBtn" data-toggle="modal"
+                        <button type="button" class="btn btn-outline-secondary mr-2" id="tambahPaketBtn" data-toggle="modal"
                         data-target="#modalPaket"><i class="icon-plus"></i>  Paket Cucian</button>
                     </div>
                 </div>
@@ -79,12 +79,12 @@
                         <tfoot>
                             <tr valign="bottom">
                                 <td width="" colspan="3" align="right">Jumlah Bayar</td>
-                                <td><span id="subTotal">0</span></td>
+                                <td><span id="subtotal">0</span></td>
                                 <td rowspan="4">
                                     <label for="">Pembayaran</label>
-                                    <input type="text" class="form-control" name="bayar" id="" style="width:170px" value="0">
+                                    <input type="text" name="bayar" class="form-control" id="" style="width:170px" value="0">
                                     <div class="">
-                                        <button class="btn btn-secondary" style="margin-top:10px;width170px">Bayar</button>
+                                        <button class="btn btn-outline-primary" style="margin-top:10px;width170px">Bayar</button>
                                     </div>
                                 </td>
                             </tr>
@@ -201,7 +201,7 @@
                                                     <tr>
                                                         <td>
                                                             {{ $i=(isset($i)?++$i:$i=1) }}
-                                                            <input type="hidden" class="idPaket" value="{{ $p->id }}">
+                                                            <input type="hidden" class="idPaket" name="idPaket" value="{{ $p->id }}">
                                                         </td>
                                                         <td>{{ $p->nama_paket }}</td>
                                                         <td>{{ $p->jenis }}</td>

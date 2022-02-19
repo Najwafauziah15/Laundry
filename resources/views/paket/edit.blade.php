@@ -20,12 +20,7 @@
                                         <input type="hidden" id="id" name="id">
                                         <div class="form-group mb-3">
                                             <label for="id_outlet" class="form-label">ID Outlet</label>
-                                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="id_outlet" name="id_outlet">
-                                                <option selected value="{{ $pk->id_outlet }}">{{ $pk->id_outlet }}</option>
-                                                @foreach ($outlet as $o )
-                                                <option value="{{ $o->id }}">{{ $o->nama }}</option>
-                                                @endforeach
-                                            </select>
+                                            <input type="text" id="nama_paket" name="nama_paket" value="{{ $pk->id_outlet }}" class="form-control" placeholder="Nama Paket" readonly>
                                         </div>
                                         <div class="form-group mb-3">
                                             <label for="jenis" class="form-label">Jenis</label>

@@ -56,20 +56,20 @@
 
     //function pilih paket
     function pilihPaket(a){
-        const tr = $(a).closest(' tr')
+        const tr = $(a).closest('tr')
         const namaPaket = tr.find('td:eq(1)').text();
         const harga = tr.find('td:eq(3)').text();
         const idPaket = tr.find('.idPaket').val();
 
         let data = '';
-        let tbody = $('#tblTransaksi tbody tr td').text();
-        data +='<tr>';
-        data +=`<td> ${namaPaket} </td>`;
+        let tbody = $('#tblTransaksi tbody tr td').text()
+        data +='<tr>'
+        data +=`<td> ${namaPaket} </td>`
         data +=`<td> ${harga} </td>`;
-        data +=`<input type="hidden" name="id_paket[]" value="${idPaket}">`;
-        data +=`<td><input type="number" value="1" min="1" name="qty[]" class="qty" size="2" style="width:40px"></td>`;
+        data +=`<input type="hidden" name="id_paket[]" value="${idPaket}">`
+        data +=`<td><input type="number" value="1" min="1" class="qty" name="qty[]" size="2" style="width:40px"></td>`;
         data +=`<td><label name="sub_total[]" class="subTotal">${harga}</label></td>`;
-        data +=`<td><button type="button" class="btnRemovePaket btn btn-danger" >hapus</button></td>`;
+        data +=`<td><button type="button" class="btnRemovePaket btn btn-danger">hapus</button></td>`;
         data +='</tr>'
 
         if(tbody == 'Belum ada data') $('#tblTransaksi tbody tr').remove();
@@ -83,9 +83,9 @@
 
     //function hitung total
     function hitungTotalAkhir(a){
-        let qty = Number ($(a).closest('tr').find('.qty').val());
-        let harga = Number ($(a).closest('tr').find('td:eq(1)').text());
-        let subTotalAwal = Number ($(a).closest('tr').find('.subTotal').text());
+        let qty = Number($(a).closest('tr').find('.qty').val());
+        let harga = Number($(a).closest('tr').find('td:eq(1)').text());
+        let subTotalAwal = Number($(a).closest('tr').find('.subTotal').text());
         let count = qty*harga;
         subtotal = subtotal - subTotalAwal + count
         total = subtotal - Number($('#diskon').val())+Number($('#pajak-harga').val())
@@ -95,7 +95,7 @@
     }
 
     //perubahan qty
-    $('#tblTransasi').on('change','.qty',function(){
+    $('#tblTransaksi').on('change','.qty',function(){
         hitungTotalAkhir(this)
     })
 
