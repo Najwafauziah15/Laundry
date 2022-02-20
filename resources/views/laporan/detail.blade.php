@@ -18,6 +18,12 @@
                                 <p class="my-auto">nama paket : {{ $t->paket->nama_paket }}</p>
                                 <p class="my-auto">jenis paket : {{ $t->paket->jenis }}</p>
                                 <p class="my-auto">harga paket : {{ $t->paket->harga }}</p>
+                                <p class="my-auto">jumlah paket : {{ $t->qty }}</p>
+                                <p class="my-auto">total awal : {{ $t->transaksi->subtotal }}</p>
+                                <p class="my-auto">diskon : {{ $t->transaksi->diskon }}%</p>
+                                <p class="my-auto">pajak : {{ $t->transaksi->pajak }}%</p>
+                                <p class="my-auto">biaya tambahan : {{ $t->transaksi->biaya_tambahan }}</p>
+                                <p class="my-auto">total akhir : {{ $t->transaksi->total }}</p>
                                 <p class="my-auto">nama member : {{ $t->transaksi->member->nama }}</p>
                                 <p class="my-auto">harga total : {{ $t->transaksi->member->nama }}</p>
                             </div>
