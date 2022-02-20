@@ -24,6 +24,8 @@ class CreateTransaksiTable extends Migration
             $table->integer('biaya_tambahan');
             $table->double('diskon');
             $table->integer('pajak');
+            $table->integer('total');
+            $table->integer('subtotal');
             $table->enum('status',['baru','proses','selesai','diambil']);
             $table->enum('dibayar',['dibayar','belum_dibayar']);
             $table->foreignId('id_user')->constrained('users')->onDelete('cascade')->onUpdate('cascade');

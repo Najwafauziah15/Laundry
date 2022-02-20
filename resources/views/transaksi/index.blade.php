@@ -102,9 +102,9 @@
         $('#tblTransaksi tbody').append(data);
 
         subtotal += Number(harga)
-        total = subtotal - Number($('#diskon').val()) + Number($('#pajak-harga').val())
-        $('#subtotal').text(subtotal)
-        $('#total').text(total)
+        total = subtotal - Number($('#diskon').val()) + Number($('#pajak-persen').val())
+        $('#subtotal').val(subtotal)
+        $('#total').val(total)
     }
 
     //function hitung total
@@ -113,11 +113,13 @@
         let harga = Number($(a).closest('tr').find('td:eq(1)').text());
         let subTotalAwal = Number($(a).closest('tr').find('.subTotal').text());
         let count = qty*harga;
-        subtotal = subtotal - subTotalAwal + count
-        total = subtotal - Number($('#diskon').val())+Number($('#pajak-harga').val())
+        subtotal = subtotal - subTotalAwal + count;
+        let pajak = Number($('#pajak-persen').val())/100 * subtotal;
+        total = subtotal - Number($('#diskon').val())+Number($('#biaya-tambahan').val()) + pajak;
         $(a).closest('tr').find('.subTotal').text(count)
-        $('#subtotal').text(subtotal)
-        $('#total').text(total)
+        // $('#pajak-harga').text(pajak)
+        $('#subtotal').val(subtotal)
+        $('#total').val(total)
     }
 
     //perubahan qty
@@ -131,8 +133,8 @@
         subtotal -= subTotalAwal
         total -= subTotalAwal;
         $currentRow = $(this).closest('tr').remove();
-        $('#subtotal').text(subtotal)
-        $('#total').text(total)
+        $('#subtotal').val(subtotal)
+        $('#total').val(total)
     })
 
 </script>

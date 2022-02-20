@@ -15,10 +15,6 @@ class Paket extends Model
     public $incrementing = true; // jika primary key tidak auto increment ubah menjadi false
     protected $table = 'paket';
     protected $fillable = ['id_outlet', 'jenis', 'nama_paket', 'harga'];
-
-    // public function produk(){
-    //     return $this->hasOne(Produk::class,'id', 'produk_id');
-    // }
     
     public function outlet() 
     { 

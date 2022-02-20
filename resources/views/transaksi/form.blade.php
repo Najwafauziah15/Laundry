@@ -32,7 +32,7 @@
                 <div class="col-md-6 col-sm-6 col-xs-6 form-group">
                     <label for="" class="control-label col-md-6 col-sm-6 col-xs-6"> Estimasi Selesai </label>
                     <div class="col-md-6 col-sm-6 col-xs-6">
-                        <input type="date" class="date-picker form-control col-md-12 col-xs-12" name="batas_waktu" required>
+                        <input type="date" class="date-picker form-control col-md-12 col-xs-12" value="{{ date('Y-m-d', strtotime(date('Y-m-d').'+3 day')) }}" name="batas_waktu" required>
                     </div>
                 </div>
                 {{-- button tambah Pelanggan --}}
@@ -78,7 +78,8 @@
                         <tfoot>
                             <tr valign="bottom">
                                 <td width="" colspan="3" align="right">Jumlah Bayar</td>
-                                <td><span id="subtotal">0</span></td>
+                                {{-- <td><span id="subtotal">0</span></td> --}}
+                                <td><input type="text" name="subtotal" id="subtotal" placeholder="0" readonly></td>
                                 <td rowspan="4">
                                     <label for="">Pembayaran</label>
                                     <input type="text" name="bayar" class="form-control" id="" style="width:170px" value="0">
@@ -92,18 +93,18 @@
                                 <td><input type="number" name="diskon" value="0" id="diskon" style="width:140px"></td>
                             </tr>
                             <tr>
-                                <td colspan="3" align="right">Pajak
-                                    <input type="number" name="pajak" value="0" min="0" class="qty" id="pajak-persen" size="2" style="width: 40px">
-                                </td>
-                                <td><span id="pajak-harga">0</span></td>
+                                <td colspan="3" align="right">Pajak</td>
+                                <td><input type="number" name="pajak" value="0" min="0" class="qty" id="pajak-persen" size="2" style="width: 40px"></td>
+                                {{-- <td><span id="pajak-harga">0</span></td> --}}
                             </tr>
                             <tr>
                                 <td colspan="3" align="right">Bayar Tambahan</td>
-                                <td><input type="number" name="biaya_tambahan" value="0" id="biaya_tambahan" style="width:140px"></td>
+                                <td><input type="number" name="biaya_tambahan" id="biaya-tambahan" value="0" id="biaya_tambahan" style="width:140px"></td>
                             </tr>
                             <tr style="background-color: rgb(123, 75, 255);color:white;font-weight:bold;font-size:1em">
                                 <td colspan="3" align="right">Total Bayar Akhir</td>
-                                <td><span id="total">0</span></td>
+                                {{-- <td><span name="total" id="total">0</span></td> --}}
+                                <td><input type="text" name="total" id="total" placeholder="0" readonly></td>
                             </tr>
                         </tfoot>
                         </table>

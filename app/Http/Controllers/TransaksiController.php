@@ -50,6 +50,8 @@ class TransaksiController extends Controller
         $request['status'] = 'baru';
         $request['dibayar'] = ($request->bayar == 0?'belum_dibayar':'dibayar');
         $request['id_user'] = auth()->user()->id;
+        $request['total'] = ($request->total);
+        $request['subtotal'] = ($request->subtotal);
 
         //input transaksi
         $input_transaksi = Transaksi::create($request->all());

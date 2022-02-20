@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Detail_Transaksi;
-
+use App\Models\Transaksi;
+use App\Models\Paket;
+use App\Models\Member;
 
 class LaporanController extends Controller
 {
@@ -15,7 +17,12 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        //
+        $data['detail_transaksi'] = Detail_Transaksi::all();
+        $data['transaksi'] = Transaksi::all();
+        $data ['member'] = Member::get();
+        $data ['paket'] = Paket::get();
+
+        return view('laporan.index', $data);
     }
 
     /**

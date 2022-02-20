@@ -29,7 +29,9 @@ class StoreTransaksiRequest extends FormRequest
             'batas_waktu' => 'required',
             'id_paket' => 'required',
             'qty' => 'required',
-            'bayar' => 'required' 
+            'bayar' => 'required',
+            'total' => 'required',
+            'subtotal' => 'required',
         ];
     }
 
