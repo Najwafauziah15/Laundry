@@ -14,7 +14,7 @@ use App\Http\Controllers\LaporanController;
 
 // Home
 Route::get('/home', [HomeController::class, 'index4']);
-Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('role');
+Route::get('/', [HomeController::class, 'index'])->name('home')->middleware('auth');
 Route::get('/homeOwner', [HomeController::class, 'index3'])->name('homeOwner');
 Route::get('/homeKasir', [HomeController::class, 'index2'])->name('homeKasir');
 
@@ -48,7 +48,7 @@ Route::resource('user', UserController::class)->middleware('role');
 Route::delete('{id}/user/delete' , [UserController::class, 'destroy']);
 
 // Transaksi
-Route::resource('transaksi', TransaksiController::class)->middleware('auth')->middleware('role');
+Route::resource('transaksi', TransaksiController::class)->middleware('auth');
 // Route::post('/transaksi/store', [TransaksiController::class, 'store'])->middleware('auth')->middleware('role');
 
 // Laporan

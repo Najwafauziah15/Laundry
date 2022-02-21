@@ -14,9 +14,6 @@
                         <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">DATA TRANSAKSI</h3>
                     </div>
                 </div>
-                <div class="row">
-                    <a href="/transaksi" style="width: 115px"  class="btn btn-rounded btn-outline-info">+ Tambah</a>
-                </div>
                 {{-- alert --}}
                 <div class="row">
                     <div style="margin-top:20px">

@@ -30,11 +30,11 @@ class LoginController extends Controller
             }
             elseif(auth()->user()->role == 'kasir'){
                 $request->session()->regenerate();
-                return redirect()->intended('/homeKasir');
+                return redirect()->intended('/');
             }
             elseif(auth()->user()->role == 'owner'){
                 $request->session()->regenerate();
-                return redirect()->intended('/homeOwner');
+                return redirect()->intended('/');
             }
         }
 
