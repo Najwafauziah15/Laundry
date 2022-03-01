@@ -40,6 +40,12 @@
                         @endif
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-12">
+                        <a href="/export" class="btn btn-outline-success"><i class="icon-printer"> Excel</i></a>
+                    </div>
+                </div>
+                <br>
                 <!-- basic table -->
                 <div class="row">
                     <div class="col-12">
@@ -75,7 +81,6 @@
                                                     </button>
                                                     {{-- <a href="/cetak" class="btn btn-outline-warning"><i class="icon-printer"></i></a> --}}
                                                     <a href="{{ url($t->id. '/cetak')}}" class="btn btn-outline-warning"><i class="icon-printer"></i></a>
-                                                    <a href="{{ url($t->id. '/export')}}" class="btn btn-outline-success"><i class="icon-printer"></i></a>
                                                 </td>
                                             </tr>
                                             @include('laporan.detail')

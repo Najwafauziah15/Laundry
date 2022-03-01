@@ -50,7 +50,7 @@ Route::resource('transaksi', TransaksiController::class)->middleware('auth');
 // Laporan
 Route::get('{id}/cetak', [LaporanController::class, 'faktur'])->middleware('auth');
 Route::get('laporan', [LaporanController::class, 'index'])->middleware('auth');
-Route::get('{id}/export/', [LaporanController::class, 'export']);
+Route::get('/export', [LaporanController::class, 'export']);
 // Route::get('cetak', [LaporanController::class, 'index2'])->middleware('auth');
 
 // Barang
