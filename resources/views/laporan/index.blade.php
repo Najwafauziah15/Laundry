@@ -54,6 +54,8 @@
                                                 <th>Nama Paket</th>
                                                 <th>Status</th>
                                                 <th>Dibayar</th>
+                                                <th>Tanggal</th>
+                                                <th>Estimasi</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
@@ -65,16 +67,19 @@
                                                 <td>{{ $t->paket->nama_paket }}</td>
                                                 <td>{{ $t->transaksi->status }}</td>
                                                 <td>{{ $t->transaksi->dibayar }}</td> 
+                                                <td>{{ $t->transaksi->tgl }}</td> 
+                                                <td>{{ $t->transaksi->batas_waktu }}</td> 
                                                 <td> 
                                                     <button type="submit" class="btn btn-outline-info mt-1" data-toggle="modal" data-target="#DetailModal{{ $t->id_transaksi }}">
-                                                        Detail
+                                                        <i class="icon-note"></i>
                                                     </button>
-                                                    <button type="submit" class="btn btn-outline-warning mt-1" data-toggle="modal" data-target="#Faktur{{ $t->id_transaksi }}">
-                                                        Faktur
-                                                    </button>
+                                                    {{-- <a href="/cetak" class="btn btn-outline-warning"><i class="icon-printer"></i></a> --}}
+                                                    <a href="{{ url($t->id. '/cetak')}}" class="btn btn-outline-warning"><i class="icon-printer"></i></a>
+                                                    <a href="{{ url($t->id. '/export')}}" class="btn btn-outline-success"><i class="icon-printer"></i></a>
                                                 </td>
                                             </tr>
                                             @include('laporan.detail')
+                                            {{-- @include('transaksi.faktur') --}}
                                             @endforeach
                                         </tbody>
                                     </table>

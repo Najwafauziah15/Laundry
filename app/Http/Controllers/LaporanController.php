@@ -7,6 +7,10 @@ use App\Models\Detail_Transaksi;
 use App\Models\Transaksi;
 use App\Models\Paket;
 use App\Models\Member;
+use PDF;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
+use App\Exports\DetailExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LaporanController extends Controller
 {
@@ -89,5 +93,28 @@ class LaporanController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+     // export PDF
+     public function faktur(Request $request, $id) {
+       
+        // $request = Detail_Transaksi::find($id);
+        $data ['detail_transaksi'] = Detail_Transaksi::where('id_transaksi', $id)->get();
+
+        // $data = Transaksi::find($id);
+        // $data ['detail_transaksi'] = Detail_Transaksi::all();
+        // $data ['t'] = Detail_Transaksi::all();
+        // $t ['detail_transaksi'] = Detail_Transaksi::find($id);
+
+        // echo $t->$id
+        // $data ['outlet'] = Auth::user()->outlet;
+
+        $pdf = PDF::loadView('transaksi.faktur',  $data);
+        return $pdf->stream();
+    }
+
+    public function export() 
+    {
+        return Excel::download(new DetailExport, 'detail.xlsx');
     }
 }

@@ -7,7 +7,7 @@ use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\PaketController;
 use App\Http\Controllers\PenggunaController;
-use App\Http\Controllers\Pengguna2Controller;
+use App\Http\Controllers\BarangController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LaporanController;
@@ -36,12 +36,8 @@ Route::resource('paket', PaketController::class)->middleware('role');
 Route::delete('{id}/paket/delete' ,  [PaketController::class, 'destroy']);
 
 // Member
-Route::resource('pengguna', PenggunaController::class)->middleware('role');
+Route::resource('pengguna', PenggunaController::class)->middleware('auth');
 Route::delete('{id}/pengguna/delete' ,  [PenggunaController::class, 'destroy']);
-
-// Member2
-Route::resource('pengguna2', Pengguna2Controller::class)->middleware('auth');
-Route::delete('{id}/pengguna2/delete' ,  [Pengguna2Controller::class, 'destroy']);
 
 // Pengguna atau user
 Route::resource('user', UserController::class)->middleware('role');
@@ -52,4 +48,11 @@ Route::resource('transaksi', TransaksiController::class)->middleware('auth');
 // Route::post('/transaksi/store', [TransaksiController::class, 'store'])->middleware('auth')->middleware('role');
 
 // Laporan
+Route::get('{id}/cetak', [LaporanController::class, 'faktur'])->middleware('auth');
 Route::get('laporan', [LaporanController::class, 'index'])->middleware('auth');
+Route::get('{id}/export/', [LaporanController::class, 'export']);
+// Route::get('cetak', [LaporanController::class, 'index2'])->middleware('auth');
+
+// Barang
+Route::resource('barang', BarangController::class);
+Route::delete('{id}/barang/delete' ,  [BarangController::class, 'destroy']);

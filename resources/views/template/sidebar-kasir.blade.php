@@ -16,7 +16,7 @@
                 <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/laporan"
                     aria-expanded="false"><i class="icon-notebook"></i><span
                         class="hide-menu">Laporan</span></a></li>
-                <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/pengguna2"
+                <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/pengguna"
                     aria-expanded="false"><i class="icon-user"></i><span
                         class="hide-menu">Member</span></a></li> 
                 @else

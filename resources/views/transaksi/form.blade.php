@@ -156,7 +156,7 @@
                                                         <td>{{ $m->alamat }}</td>
                                                         <td>{{ $m->jenis_kelamin }}</td> 
                                                         <td>{{ $m->tlp }}</td> 
-                                                        <td><button class="pilihMember" type="button">Pilih</button></td>
+                                                        <td><button class="pilihMember btn btn-outline-secondary" type="button"><i class="icon-plus"></i></button></td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
@@ -178,7 +178,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h3 class="modal-title" id="exampleModalLongTitle">
-                        PILIH PELANGGAN
+                        PILIH PAKET
                         </h3>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
@@ -210,7 +210,7 @@
                                                         <td>{{ $p->nama_paket }}</td>
                                                         <td>{{ $p->jenis }}</td>
                                                         <td>{{ $p->harga }}</td> 
-                                                        <td><button class="pilihPaket" type="button">Pilih</button></td>
+                                                        <td><button class="pilihPaket btn btn-outline-secondary" type="button"><i class="icon-plus"></i></button></td>
                                                     </tr>
                                                     @endforeach
                                                 </tbody>
