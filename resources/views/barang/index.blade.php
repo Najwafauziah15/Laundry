@@ -18,7 +18,9 @@
                     <button type="button" style="width: 115px" class="btn btn-rounded btn-outline-info" data-toggle="modal" data-target="#formInputModal">
                         + Tambah
                     </button>
+                    <a href="paket/export" style="width: 115px" class="btn btn-outline-success"><i class="icon-printer"> Excel</i></a>
                 </div>
+
                 {{-- alert --}}
                 <div class="row">
                     <div style="margin-top:20px">
@@ -126,5 +128,26 @@
             }
             })
         })
+
+        // $('#datatable1').DataTable({
+        //     "responsive":true, "lengthChange":false, "autoWidth":false,
+        //     "button":["copy", "csv", "excel", "pdf", "print"]
+        // }).buttons().container().appendTo('#datatable1_wrapper .col-md-6:eq(0)');
+
+        // $('.datatable').DataTable({
+        //     "responsive":true, "lengthChange":false, "autoWidth":false,
+        //     "button":["copy", "csv", "excel", "pdf", "print"]
+        // }).buttons().container().appendTo('#example_wrapper .col-md-6:eq(0)');
+
+        // $('.datatable2').DataTable({
+        //     "paging":true,
+        //     "lengthChange":false,
+        //     "searching":true,
+        //     "ordering":true,
+        //     "info":true,
+        //     "autoWidth":true,
+        //     "responsive":true,
+        // });
+
     </script>
 @endpush

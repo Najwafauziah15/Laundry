@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 Use App\Models\Outlet;
+use App\Exports\OutletExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class OutletController extends Controller
 {
@@ -101,5 +103,10 @@ class OutletController extends Controller
         $outlet = Outlet::find($id);
         $outlet->delete();
         return redirect('/outlet')->with('success', 'Data Outlet Berhasil Dihapus');
+    }
+
+    public function export() 
+    {
+        return Excel::download(new OutletExport, 'Outlet Laundry.xlsx');
     }
 }

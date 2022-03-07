@@ -2,7 +2,7 @@
 
 namespace App\Exports;
 
-use App\Models\Detail_Transaksi;
+use App\Models\Outlet;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithMapping;
@@ -17,25 +17,23 @@ use Maatwebsite\Excel\Sheet;
 use illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet\style\NumberFormat;
 
-class DetailExport implements FromCollection, WithHeadings, WithEvents
+class OutletExport implements FromCollection, WithHeadings, WithEvents, WithMapping
 {
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
-    
     {
-        return Detail_Transaksi::all();
+        return Outlet::all();
     }
 
     public function headings(): array
     {
         return[
             'Id',
-            'Id Transaksi',
-            'Id Paket',
-            'Qty',
-            'Ket',
+            'Nama Outlet',
+            'Alamat',
+            'Telepon',
             'Di Buat',
             'Di Update'
         ];
@@ -55,11 +53,12 @@ class DetailExport implements FromCollection, WithHeadings, WithEvents
 
                 $event->sheet->insertNewRowBefore(1, 2);
                 $event->sheet->mergeCells('A1:G1');
-                $event->sheet->setCellValue('A1', 'DATA DETAIL TRANSAKSI');
+                $event->sheet->setCellValue('A1', 'DATA OUTLET');
                 $event->sheet->getStyle('A1')->getFont()->setBold(true);
-                $event->sheet->getStyle('A1');
-                // $event->sheet->getStyle('A1')->getAligment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+                // $event->sheet->getStyle('A1');
+                $event->sheet->getStyle('A1')->getAligment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
             }
         ];
     }
+
 }

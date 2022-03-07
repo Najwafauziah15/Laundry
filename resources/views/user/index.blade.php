@@ -18,6 +18,7 @@
                     <button type="button" style="width: 115px" class="btn btn-rounded btn-outline-info" data-toggle="modal" data-target="#formInputModal">
                         + Tambah
                     </button>
+                    <a href="{{ route('export_user') }}" style="width: 115px" class="btn btn-outline-success"><i class="icon-printer"> Excel</i></a>
                 </div>
                 {{-- alert --}}
                 <div class="row">

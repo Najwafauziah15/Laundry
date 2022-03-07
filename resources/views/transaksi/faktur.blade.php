@@ -60,24 +60,14 @@
             </tr>
         </tbody>
     </table>
-    <p style="text-align: left; line-height: 0.5em"><b>Perhatian</b></p>
-    <p style="text-align: left; line-height: 0.5em">- Pengabilan barang harus disertai nota</p>
-    <p style="text-align: left">- Klaim berlaku 24 jam setelah barang di ambil</p>
-    <p style="text-align: left">- Kain luntur, berkerut karena sifat kain diluar tanggungan</p>
-    <p style="text-align: left">- Cucian yang tidak di ambil dalam waktu 1 bulan, bila rusak/hilang bukan tanggung jawab kami</p>
-    {{-- <p class="my-auto">Status transaksi : {{ $t->transaksi->status }}</p>
-    <p class="my-auto">Status pembayaran : {{ $t->transaksi->dibayar }}</p>
-    <p class="my-auto">Nama paket : {{ $t->paket->nama_paket }}</p>
-    <p class="my-auto">Harga paket : {{ $t->paket->harga }}</p>
-    <p class="my-auto">Jumlah paket : {{ $t->qty }}</p>
-    <p class="my-auto">Total awal : {{ $t->transaksi->subtotal }}</p>
-    <p class="my-auto ">Diskon : {{ $t->transaksi->diskon }}%</p>
-    <p class="my-auto ">Pajak : {{ $t->transaksi->pajak }}%</p>
-    <p class="my-auto ">Biaya tambahan : {{ $t->transaksi->biaya_tambahan }}</p>
-    <p class="my-auto ">Total akhir : {{ $t->transaksi->total }}</p>
-    <p class="my-auto">Tanggal masuk : {{ $t->transaksi->tgl }}</p>
-    <p class="my-auto">Tanggal bayar : {{ $t->transaksi->tgl_bayar }}</p>
-    <p class="my-auto">Estimasi : {{ $t->transaksi->batas_waktu }}</p> --}}
+    <p style="text-align: left; line-height: 0.5em;font-size:9"><b>Perhatian</b></p>
+    <p style="text-align: left; line-height: 0.5em;font-size:9">- Pengabilan barang harus disertai nota</p>
+    <p style="text-align: left; line-height: 0.5em;font-size:9">- Klaim berlaku 24 jam setelah barang di ambil</p>
+    <p style="text-align: left; line-height: 0.5em;font-size:9">- Kain luntur, berkerut karena sifat kain diluar tanggungan</p>
+    <p style="text-align: left; line-height: 0.5em;font-size:9">- Cucian yang tidak di ambil dalam waktu 1 bulan, bila rusak/hilang bukan tanggung jawab kami</p>
+    <p style="text-align: right; line-height: 0.5em"><b>Hormat kami,</b></p>
+    <br><br>
+    <p style="text-align: right; line-height: 0.5em"><b>.......................................</b></p>
     @endforeach
     </div>
 </body>

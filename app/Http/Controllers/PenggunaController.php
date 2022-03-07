@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Member;
+use App\Imports\MemberImport;
+use App\Exports\MemberExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PenggunaController extends Controller
 {
@@ -103,5 +106,27 @@ class PenggunaController extends Controller
         $pengguna = Member::find($id);
         $pengguna->delete();
         return redirect('/pengguna')->with('success', 'Data Pengguna Berhasil Dihapus');
+    }
+
+    public function export() 
+    {
+        return Excel::download(new MemberExport, 'Member Laundry.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file2' => 'file|required|mimes:xlsx',
+        ]);
+
+        if ($request) {
+            Excel::import(new MemberImport, $request->file('file2'));
+        } else {
+            return back()->withErrors([
+                'file2' => 'file belum terisi',
+            ]);
+        }
+
+        return redirect()->route('pengguna.index')->with('success', 'Data Berhasil Di Import!');
     }
 }

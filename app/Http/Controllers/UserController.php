@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Outlet;
 use Illuminate\Support\Facades\Hash;
+use App\Exports\UserExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 class UserController extends Controller
 {
     /**
@@ -114,5 +117,10 @@ class UserController extends Controller
         $user = User::find($id);
         $user->delete();
         return redirect('/user')->with('success', 'Data User Berhasil Dihapus');
+    }
+
+    public function export() 
+    {
+        return Excel::download(new UserExport, 'Pengguna Laundry.xlsx');
     }
 }

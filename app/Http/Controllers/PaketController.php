@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Paket;
 use App\Models\Outlet;
+use App\Exports\PaketExport;
+use App\Imports\PaketImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PaketController extends Controller
 {
@@ -105,5 +108,27 @@ class PaketController extends Controller
         $paket = Paket::find($id);
         $paket->delete();
         return redirect('/paket')->with('success', 'Data Paket Berhasil Dihapus');
+    }
+
+    public function export() 
+    {
+        return Excel::download(new PaketExport, 'Paket Laundry.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file2' => 'file|required|mimes:xlsx',
+        ]);
+
+        if ($request) {
+            Excel::import(new PaketImport, $request->file('file2'));
+        } else {
+            return back()->withErrors([
+                'file2' => 'file belum terisi',
+            ]);
+        }
+
+        return redirect()->route('paket.index')->with('success', 'All good!');
     }
 }
