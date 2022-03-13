@@ -10,6 +10,7 @@ use App\Http\Controllers\PenggunaController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\LaporanController;
 
 // Home
@@ -62,3 +63,6 @@ Route::get('/export', [LaporanController::class, 'export']);
 // Barang
 Route::resource('barang', BarangController::class);
 Route::delete('{id}/barang/delete' ,  [BarangController::class, 'destroy']);
+
+// Karyawan Sorting
+Route::resource('karyawan', KaryawanController::class);

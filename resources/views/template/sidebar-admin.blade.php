@@ -24,6 +24,9 @@
                 <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/user"
                     aria-expanded="false"><i class="icon-user"></i><span
                         class="hide-menu">Pengguna</span></a></li>
+                <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/karyawan"
+                    aria-expanded="false"><i class="icon-notebook"></i><span
+                        class="hide-menu">Simulasi</span></a></li>
                 <li class="list-divider"></li>
                 <li class="nav-small-cap"><span class="hide-menu">Extra</span></li>                        
                 @auth

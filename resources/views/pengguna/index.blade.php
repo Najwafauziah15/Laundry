@@ -80,8 +80,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($pengguna as $p)
                                             <tr>
+                                            @foreach ($pengguna as $p)
                                                 <td>{{ $i=(isset($i)?++$i:$i=1) }}</td>
                                                 <td>{{ $p->nama }}</td>
                                                 <td>{{ $p->alamat }}</td>

@@ -40,11 +40,11 @@
                         @endif
                     </div>
                 </div>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-12">
                         <a href="/export" class="btn btn-outline-success"><i class="icon-printer"> Excel</i></a>
                     </div>
-                </div>
+                </div> --}}
                 <br>
                 <!-- basic table -->
                 <div class="row">

@@ -21,9 +21,9 @@
         <tbody style="text-align: center">
             <tr>
                 <td colspan="4">
-                    <p class="my-auto" style="text-align: left" >Nama Pembeli : {{ $t->transaksi->member->nama }}</p>
-                    <p class="my-auto" style="text-align: left" >Alamat Pembeli : {{ $t->transaksi->member->alamat }}</p>
-                    <p class="my-auto" style="text-align: left">Telepon Pembeli : {{ $t->transaksi->member->tlp }}</p>
+                    <p class="my-auto" style="text-align: left" >Nama Pembeli    : {{ $t->transaksi->member->nama }}</p>
+                    <p class="my-auto" style="text-align: left" >Alamat Pembeli  : {{ $t->transaksi->member->alamat }}</p>
+                    <p class="my-auto" style="text-align: left" >Telepon Pembeli : {{ $t->transaksi->member->tlp }}</p>
                 </td>
             </tr>
             <tr>
