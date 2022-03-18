@@ -13,7 +13,7 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        return view('karyawan.test');
+        return view('karyawan.index');
     }
 
     /**

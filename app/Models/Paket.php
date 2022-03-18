@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Paket extends Model
 {
     use HasFactory;
-
-    use HasFactory;
     
     protected $primaryKey = 'id'; // jika primary field bukan id, wajib diubah disini
     public $incrementing = true; // jika primary key tidak auto increment ubah menjadi false

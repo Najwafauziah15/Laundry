@@ -17,7 +17,7 @@ use Maatwebsite\Excel\Sheet;
 use illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet\style\NumberFormat;
 
-class OutletExport implements FromCollection, WithHeadings, WithEvents, WithMapping
+class OutletExport implements FromCollection, WithHeadings, WithEvents 
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -49,14 +49,33 @@ class OutletExport implements FromCollection, WithHeadings, WithEvents, WithMapp
                 $event->sheet->getColumnDimension('D')->setAutoSize(true);
                 $event->sheet->getColumnDimension('E')->setAutoSize(true);
                 $event->sheet->getColumnDimension('F')->setAutoSize(true);
-                $event->sheet->getColumnDimension('G')->setAutoSize(true);
 
                 $event->sheet->insertNewRowBefore(1, 2);
-                $event->sheet->mergeCells('A1:G1');
+                $event->sheet->mergeCells('A1:F1');
                 $event->sheet->setCellValue('A1', 'DATA OUTLET');
                 $event->sheet->getStyle('A1')->getFont()->setBold(true);
                 // $event->sheet->getStyle('A1');
-                $event->sheet->getStyle('A1')->getAligment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+                $event->sheet->getStyle('A1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
+                $event->sheet->getStyle('A3:F' . $event->sheet->getHighestRow())->applyFromArray([
+                    'borders' => [
+                        'allBorders' => [
+                            'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                            'color' => ['argb' => '000000'],
+                        ],
+                    ],
+                ]);
+                $event->sheet->styleCells(
+                    'A3:F3',
+                    [
+                        //Set border style
+                        'borders' => [
+                            'outline' => [
+                                'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                                'color' => ['argb' => '000000']
+                            ],
+                        ],
+                    ],
+                );
             }
         ];
     }

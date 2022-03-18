@@ -12,6 +12,7 @@ use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PenjemputanController;
 
 // Home
 Route::get('/home', [HomeController::class, 'index4']);
@@ -63,6 +64,13 @@ Route::get('/export', [LaporanController::class, 'export']);
 // Barang
 Route::resource('barang', BarangController::class);
 Route::delete('{id}/barang/delete' ,  [BarangController::class, 'destroy']);
+
+// Penjemputan
+Route::resource('/penjemputan', PenjemputanController::class);
+Route::get('penjemputan/cetak', [PenjemputanController::class, 'cetak']);
+Route::get('export/penjemputan', [PenjemputanController::class, 'export'])->name('export_penjemputan');
+Route::post('import/penjemputan', [PenjemputanController::class, 'import'])->name('import_penjemputan');
+Route::delete('{id}/penjemputan/delete' ,  [PenjemputanController::class, 'destroy']);
 
 // Karyawan Sorting
 Route::resource('karyawan', KaryawanController::class);

@@ -96,7 +96,7 @@ class LaporanController extends Controller
     }
 
      // export PDF
-     public function faktur(Request $request, $id) {
+    public function faktur(Request $request, $id) {
        
         // $request = Detail_Transaksi::find($id);
         $data ['detail_transaksi'] = Detail_Transaksi::where('id_transaksi', $id)->get();

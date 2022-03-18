@@ -43,9 +43,12 @@
                 <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/laporan"
                     aria-expanded="false"><i class="icon-notebook"></i><span
                         class="hide-menu">Laporan</span></a></li>
-                <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/barang"
+                {{-- <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/barang"
                     aria-expanded="false"><i class="icon-notebook"></i><span
-                        class="hide-menu">Barang</span></a></li>
+                        class="hide-menu">Barang</span></a></li> --}}
+                <li class="sidebar-item"> <a class="sidebar-link sidebar-link" href="/penjemputan"
+                    aria-expanded="false"><i class="icon-basket"></i><span
+                        class="hide-menu">Penjemputan</span></a></li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->
