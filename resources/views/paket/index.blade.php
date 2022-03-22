@@ -15,10 +15,10 @@
                     </div>
                 </div>
                 <div class="row">
-                    <button type="button" style="width: 115px" class="btn btn-rounded btn-outline-info" data-toggle="modal" data-target="#formInputModal">
+                    <button type="button" style="width: 115px" class="btn btn-rounded btn-outline-info m-2" data-toggle="modal" data-target="#formInputModal">
                         + Tambah
                     </button>
-                    <a href="{{ route('export_paket') }}" style="width: 115px" class="btn btn-outline-success"><i class="icon-printer"> Excel</i></a>
+                    <a href="{{ route('export_paket') }}" style="width:200px" class="btn btn-outline-success m-2"><i class="icon-arrow-down-circle"> Export Ke Excel</i></a>
                     {{-- <form action="{{ route('import_paket') }}">
                         <input type="file" name="file2" >
                     </form> --}}
@@ -91,7 +91,7 @@
                                                 <td>{{ $pk->nama_paket }}</td> 
                                                 <td>{{ $pk->harga }}</td> 
                                                 <td> 
-                                                    {{-- delete-mobil --}}
+                                                    {{-- delete-paket --}}
                                                     <form action="{{ url($pk->id. '/paket/delete')}}" method="POST">
                                                         @csrf
                                                         @method("delete")

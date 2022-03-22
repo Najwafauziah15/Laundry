@@ -7,6 +7,8 @@ use App\Models\Transaksi;
 use App\Models\Paket;
 use App\Models\Detail_Transaksi;
 use App\Models\Member;
+use PDF;
+use Barryvdh\DomPDF\PDF as DomPDFPDF;
 use App\Http\Requests\StoreTransaksiRequest;
 use PhpParser\Builder\Trait_;
 
@@ -19,6 +21,7 @@ class TransaksiController extends Controller
      */
     public function index()
     {
+        $data['detail_transaksi'] = Detail_Transaksi::all();
         $data ['member'] = Member::get();
         $data ['paket'] = Paket::where('id_outlet',auth()->user()->id_outlet)->get();
         return view('transaksi/index',$data); 
@@ -108,6 +111,14 @@ class TransaksiController extends Controller
         //
     }
 
+    public function status(request $request){
+        $data = Transaksi::where('id',$request->id)->first();
+        $data->status = $request->status;
+        $update = $data->save();
+
+        return 'Data Gagal Ditarik';
+    }
+
     /**
      * Remove the specified resource from storage.
      *
@@ -124,5 +135,22 @@ class TransaksiController extends Controller
         $last = ($last == null?1:$last->id+1);
         $kode = sprintf('TRS'.date('Ymd').'%06d',$last);
         return $kode;
+    }
+
+    public function faktur(Request $request, $id) {
+       
+        // $request = Detail_Transaksi::find($id);
+        $data ['detail_transaksi'] = Detail_Transaksi::where('id_transaksi', $id)->get();
+
+        // $data = Transaksi::find($id);
+        // $data ['detail_transaksi'] = Detail_Transaksi::all();
+        // $data ['t'] = Detail_Transaksi::all();
+        // $t ['detail_transaksi'] = Detail_Transaksi::find($id);
+
+        // echo $t->$id
+        // $data ['outlet'] = Auth::user()->outlet;
+
+        $pdf = PDF::loadView('transaksi.faktur',  $data);
+        return $pdf->stream();
     }
 }

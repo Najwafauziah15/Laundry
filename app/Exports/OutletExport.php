@@ -6,6 +6,8 @@ use App\Models\Outlet;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\RegistersEventListeners;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
@@ -17,8 +19,9 @@ use Maatwebsite\Excel\Sheet;
 use illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet\style\NumberFormat;
 
-class OutletExport implements FromCollection, WithHeadings, WithEvents 
+class OutletExport implements FromCollection, WithHeadings, WithEvents, WithMapping
 {
+    use Importable, RegistersEventListeners;
     /**
     * @return \Illuminate\Support\Collection
     */
@@ -27,15 +30,22 @@ class OutletExport implements FromCollection, WithHeadings, WithEvents
         return Outlet::all();
     }
 
+    public function map($outlet): array
+    {
+        return[
+            $outlet->nama,
+            $outlet->alamat,
+            $outlet->tlp
+        ];
+    }
+
     public function headings(): array
     {
         return[
             'Id',
             'Nama Outlet',
             'Alamat',
-            'Telepon',
-            'Di Buat',
-            'Di Update'
+            'Telepon'
         ];
     }
 
@@ -47,16 +57,14 @@ class OutletExport implements FromCollection, WithHeadings, WithEvents
                 $event->sheet->getColumnDimension('B')->setAutoSize(true);
                 $event->sheet->getColumnDimension('C')->setAutoSize(true);
                 $event->sheet->getColumnDimension('D')->setAutoSize(true);
-                $event->sheet->getColumnDimension('E')->setAutoSize(true);
-                $event->sheet->getColumnDimension('F')->setAutoSize(true);
 
                 $event->sheet->insertNewRowBefore(1, 2);
-                $event->sheet->mergeCells('A1:F1');
+                $event->sheet->mergeCells('A1:D1');
                 $event->sheet->setCellValue('A1', 'DATA OUTLET');
                 $event->sheet->getStyle('A1')->getFont()->setBold(true);
                 // $event->sheet->getStyle('A1');
                 $event->sheet->getStyle('A1')->getAlignment()->setHorizontal(\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER);
-                $event->sheet->getStyle('A3:F' . $event->sheet->getHighestRow())->applyFromArray([
+                $event->sheet->getStyle('A3:D' . $event->sheet->getHighestRow())->applyFromArray([
                     'borders' => [
                         'allBorders' => [
                             'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
@@ -65,7 +73,7 @@ class OutletExport implements FromCollection, WithHeadings, WithEvents
                     ],
                 ]);
                 $event->sheet->styleCells(
-                    'A3:F3',
+                    'A3:D3',
                     [
                         //Set border style
                         'borders' => [

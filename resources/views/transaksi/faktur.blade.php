@@ -61,7 +61,7 @@
         </tbody>
     </table>
     <p style="text-align: left; line-height: 0.5em;font-size:9"><b>Perhatian</b></p>
-    <p style="text-align: left; line-height: 0.5em;font-size:9">- Pengabilan barang harus disertai nota</p>
+    <p style="text-align: left; line-height: 0.5em;font-size:9">- Pengambilan barang harus disertai nota</p>
     <p style="text-align: left; line-height: 0.5em;font-size:9">- Klaim berlaku 24 jam setelah barang di ambil</p>
     <p style="text-align: left; line-height: 0.5em;font-size:9">- Kain luntur, berkerut karena sifat kain diluar tanggungan</p>
     <p style="text-align: left; line-height: 0.5em;font-size:9">- Cucian yang tidak di ambil dalam waktu 1 bulan, bila rusak/hilang bukan tanggung jawab kami</p>

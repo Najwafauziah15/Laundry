@@ -34,12 +34,7 @@
                                 </div>
                             </div>
                             @endif
-                            <form action="/transaksi" method="post">
-                            @csrf
                             @include('transaksi.form')
-                            @include('transaksi.data')
-                            <input type="hidden" name="id_member" id="id_member">
-                            </form>
                         </div> <!-- end card-->
                     {{-- </div> <!-- end col --> --}}
                 </div>

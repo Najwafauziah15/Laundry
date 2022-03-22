@@ -18,8 +18,9 @@
                     <button type="button" style="width: 115px" class="btn btn-rounded btn-outline-info m-2" data-toggle="modal" data-target="#formInputModal">
                         + Tambah
                     </button>
-                    <a href="{{ route('export_penjemputan') }}" style="width: 115px" class="btn btn-outline-success m-2"><i class="icon-printer"> Excel</i></a>
-                    <a href="penjemputan/cetak" style="width: 115px" class="btn btn-outline-warning m-2"><i class="icon-printer"> Word</i></a>
+                    <a href="{{ route('export_penjemputan') }}" style="width: 200px" class="btn btn-outline-success m-2"><i class="icon-arrow-down-circle"> Export Ke Excel</i></a>
+                    <a href="penjemputan/cetak" target="blank" style="width: 200px" class="btn btn-outline-danger m-2"><i class="icon-arrow-down-circle"> Export Ke Pdf</i></a>
+                    <a href="penjemputan/format" target="blank" style="width: 200px" class="btn btn-outline-info m-2"><i class="icon-arrow-down-circle"> Format Import Excel</i></a>
                     <form method="POST" action="{{ route('import_penjemputan') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
@@ -36,6 +37,9 @@
                             </div>
                         </div>
                     </form>
+                    {{-- <button type="button" class="btn btn-outline-info mt-1" data-toggle="modal" data-target="#Logging">
+                        <i class="icon-note"></i>
+                    </button> --}}
                 </div>
 
                 {{-- alert --}}
@@ -85,25 +89,32 @@
                                         <tbody>
                                             @foreach ($penjemputan as $pj)
                                             <tr>
-                                                <td>{{ $i=(isset($i)?++$i:$i=1) }}</td>
+                                                <td>{{ $i=(isset($i)?++$i:$i=1) }} 
+                                                    <input type="text" hidden class="id" value="{{ $pj->id }}"> 
+                                                </td>
                                                 <td>{{ $pj->member->nama }}</td>
                                                 <td>{{ $pj->member->alamat }}</td>
                                                 <td>{{ $pj->member->tlp }}</td> 
                                                 <td>{{ $pj->petugas }}</td> 
-                                                <td>
-                                                    <select class="form-control form-select-lg mb-3" aria-label=".form-select-lg example" id="status" name="status">
-                                                        <option value="{{ $pj->status }}">{{ $pj->status }}</option>
-                                                        <option value="tercatat">tercatat</option>
-                                                        <option value="penjemputan">penjemputan</option>
-                                                        <option value="selesai">selesai</option>
+                                                <td style="width: 15%"> 
+                                                    <select name="status" class="status statusPenjemputan form-select" id="one">
+                                                    <option name="status" value="tercatat"
+                                                        {{ $pj->status == 'tercatat' ? 'selected' : '' }}>
+                                                        Tercatat</option>
+                                                    <option name="status" value="penjemputan"
+                                                        {{ $pj->status == 'penjemputan' ? 'selected' : '' }}>
+                                                        Penjemputan</option>
+                                                    <option name="status" value="selesai"
+                                                        {{ $pj->status == 'selesai' ? 'selected' : '' }}>
+                                                        Selesai</option>
                                                     </select>
                                                 </td> 
-                                                <td> 
+                                                <td align="center"> 
                                                     {{-- delete-penjemputan --}}
                                                     <form action="{{ url($pj->id. '/penjemputan/delete')}}" method="POST">
                                                         @csrf
                                                         @method("delete")
-                                                        <button type="submit" class="btn btn-outline-danger delete">hapus</button>
+                                                        <button type="submit" class="delete btn btn-outline-danger">hapus</button>
                                                     </form>
                                                     {{-- edit penjemputan --}}
                                                     <button type="submit" class="btn btn-outline-success mt-1" data-toggle="modal" data-target="#formEditModal{{ $pj->id }}">
@@ -125,9 +136,11 @@
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
 @include('penjemputan.form')
+{{-- @include('penjemputan.logging') --}}
 @endsection
 @push('script')
     <script>
+    $(function(){
         $('.delete').click(function(e){
             e.preventDefault()
             let data = $(this).closest('form').find('button').text()
@@ -151,6 +164,36 @@
             }
             })
         })
-    })
+
+        //proses ketika status di ubah
+        $('#zero_config').on('change', '.status', function() {
+            let status = $(this).closest('tr').find('.status').val()
+            let id = $(this).closest('tr').find('.id').val()
+            let data = {
+            id: id,
+            status: status,
+            _token: "{{ csrf_token() }}"
+            };
+            $.post('{{ route('status') }}', data, function(msg) {
+
+            })
+            console.log(id);
+            console.log(status);
+        })
+
+        // status konfirmasi ubah status
+        $('.statusPenjemputan').change(function(e) {
+            swal.fire({
+                text: "Status tersebut akan diganti",
+                icon: "success",
+                buttons: true,
+                dangerMode: false,
+            })
+            .then((req) => {
+                if (req) $(e.target).closest('form').submit()
+                else swal.close()
+            })
+        });
+    });
     </script>
 @endpush

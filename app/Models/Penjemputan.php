@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Penjemputan extends Model
 {
-    use HasFactory;//proprerty
+    //property
+    use HasFactory;
 
     protected $primaryKey = 'id'; //modifier // jika primary field bukan id, wajib diubah disini
     public $incrementing = true; //modifier // jika primary key tidak auto increment ubah menjadi false

@@ -15,10 +15,26 @@
                     </div>
                 </div>
                 <div class="row">
-                    <button type="button" style="width: 115px" class="btn btn-rounded btn-outline-info" data-toggle="modal" data-target="#formInputModal">
+                    <button type="button" style="width: 115px" class="btn btn-rounded btn-outline-info m-2" data-toggle="modal" data-target="#formInputModal">
                         + Tambah
                     </button>
-                    <a href="{{ route('export_outlet') }}" style="width: 115px" class="btn btn-outline-success"><i class="icon-printer"> Excel</i></a>
+                    <a href="{{ route('export_outlet') }}" style="width: 200px" class="btn btn-outline-success m-2"><i class="icon-arrow-down-circle"> Export Ke Excel</i></a>
+                    <form method="POST" action="{{ route('import_outlet') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="file" name="file2" class="form-control border" placeholder="Pilih file excel(.xlsx)">
+                                </div>
+                                @error('file2')
+                                <div class="'alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <button type="submit" class="btn btn-warning" id="submit"> <i class="ni ni-bold-left"></i> Import</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 {{-- alert --}}
                 <div class="row">

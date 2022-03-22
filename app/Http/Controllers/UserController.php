@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Outlet;
 use Illuminate\Support\Facades\Hash;
 use App\Exports\UserExport;
+use App\Exports\UserImport;
+use App\Imports\UserImport as ImportsUserImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class UserController extends Controller
@@ -122,5 +124,22 @@ class UserController extends Controller
     public function export() 
     {
         return Excel::download(new UserExport, 'Pengguna Laundry.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file2' => 'file|required|mimes:xlsx',
+        ]);
+
+        if ($request) {
+            Excel::import(new ImportsUserImport, $request->file('file2'));
+        } else {
+            return back()->withErrors([
+                'file2' => 'file belum terisi',
+            ]);
+        }
+
+        return redirect()->route('paket.index')->with('success', 'File Berhasil Di Import!');
     }
 }

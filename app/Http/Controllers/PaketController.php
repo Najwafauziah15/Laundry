@@ -129,6 +129,6 @@ class PaketController extends Controller
             ]);
         }
 
-        return redirect()->route('paket.index')->with('success', 'All good!');
+        return redirect()->route('paket.index')->with('success', 'File Berhasil Di Import!');
     }
 }

@@ -15,10 +15,10 @@
                     </div>
                 </div>
                 <div class="row">
-                    <button type="button" style="width: 115px" class="btn btn-rounded btn-outline-info" data-toggle="modal" data-target="#formInputModal">
+                    <button type="button" style="width: 115px" class="btn btn-rounded btn-outline-info m-2" data-toggle="modal" data-target="#formInputModal">
                         + Tambah
                     </button>
-                    <a href="{{ route('export_pengguna') }}" style="width: 115px" class="btn btn-outline-success"><i class="icon-printer"> Excel</i></a>
+                    <a href="{{ route('export_pengguna') }}" style="width: 200px" class="btn btn-outline-success m-2"><i class="icon-arrow-down-circle"> Export Ke Excel</i></a>
                 </div>
                 <form method="POST" action="{{ route('import_pengguna') }}" enctype="multipart/form-data">
                     @csrf

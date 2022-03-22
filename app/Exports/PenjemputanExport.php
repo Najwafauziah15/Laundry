@@ -19,6 +19,7 @@ use Maatwebsite\Excel\Sheet;
 use illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet\style\NumberFormat;
 
+//interface (implementasi packages)
 class PenjemputanExport implements FromCollection, WithHeadings, WithEvents, WithMapping
 {
     use Importable, RegistersEventListeners;

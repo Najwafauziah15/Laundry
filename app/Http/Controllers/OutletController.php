@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 Use App\Models\Outlet;
+use App\Imports\OutletImport;
 use App\Exports\OutletExport;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -108,5 +109,22 @@ class OutletController extends Controller
     public function export() 
     {
         return Excel::download(new OutletExport, 'Outlet Laundry.xlsx');
+    }
+
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file2' => 'file|required|mimes:xlsx',
+        ]);
+
+        if ($request) {
+            Excel::import(new OutletImport, $request->file('file2'));
+        } else {
+            return back()->withErrors([
+                'file2' => 'file belum terisi',
+            ]);
+        }
+
+        return redirect()->route('outlet.index')->with('success', 'File Berhasil Di Import!');
     }
 }

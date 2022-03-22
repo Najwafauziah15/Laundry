@@ -6,6 +6,8 @@ use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithMapping;
+use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\RegistersEventListeners;
 use Maatwebsite\Excel\Concerns\WithTitle;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
@@ -17,14 +19,27 @@ use Maatwebsite\Excel\Sheet;
 use illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet\style\NumberFormat;
 
-class UserExport implements FromCollection, WithHeadings, WithEvents
+class UserExport implements FromCollection, WithHeadings, WithEvents, WithMapping
 {
+    use Importable, RegistersEventListeners;
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
         return User::all();
+    }
+
+    public function map($user): array
+    {
+        return[
+            $user->id,
+            $user->nama,
+            $user->username,
+            $user->password,
+            $user->id_outlet,
+            $user->role
+        ];
     }
 
     public function headings(): array

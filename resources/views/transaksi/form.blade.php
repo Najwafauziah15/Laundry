@@ -19,8 +19,11 @@
         <div class="tab-content">
             <div class="tab-pane show active" id="dataLaundry">
                 <div class="h3">Data</div>
+                @include('transaksi.data')
             </div>
             <div class="tab-pane" id="formLaundry">
+            <form action="/transaksi" method="post">
+            @csrf
             {{-- isi form cucian baru --}}
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-xs-6 form-group">
@@ -114,6 +117,8 @@
             </div>
             {{-- end form cucian baru --}}
             </div>
+            <input type="hidden" name="id_member" id="id_member">
+            </form>
         </div>
 
         {{-- modal Member --}}
