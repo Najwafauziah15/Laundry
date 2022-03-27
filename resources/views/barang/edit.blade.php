@@ -23,25 +23,16 @@
                                             <input type="text" id="nama_barang" name="nama_barang" value="{{ $b->nama_barang }}" class="form-control" placeholder="Nama Barang" required>
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label for="merk_barang" class="form-label">Merk Barang</label>
-                                            <input type="text" id="merk_barang" name="merk_barang" value="{{ $b->merk_barang }}" class="form-control" placeholder="Merk Barang" required>
-                                        </div>
-                                        <div class="form-group mb-3">
                                             <label for="qty" class="form-label">Jumlah</label>
                                             <input type="number" min="1" id="qty" name="qty" value="{{ $b->qty }}" class="form-control" placeholder="Jumlah" required>
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label for="kondisi" class="form-label">Kondisi</label>
-                                            <select class="form-control form-select-lg mb-3" aria-label=".form-select-lg example" name="kondisi" id="kondisi">
-                                            <option name="kondisi" value="{{ $b->kondisi }}">{{ $b->kondisi }}</option>
-                                            <option name="kondisi" value="layak_pakai">Layak Pakai</option>
-                                            <option name="kondisi" value="rusak_ringan">Rusak Ringan</option>
-                                            <option name="kondisi" value="rusak_berat">Rusak Berat</option>
-                                            </select>
+                                            <label for="harga" class="form-label">Harga</label>
+                                            <input type="number" id="harga" name="harga" value="{{ $b->harga }}" class="form-control" placeholder="Harga" required>
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label for="tanggal_pengadaan" class="form-label">Tanggal Pengadaan</label>
-                                            <input type="date" class="date-picker form-control col-md-12 col-xs-12" name="tanggal_pengadaan"value="{{ $b->tanggal_pengadaan }}" required>
+                                            <label for="supplier" class="form-label">Supplier</label>
+                                            <input type="text" id="supplier" name="supplier" value="{{ $b->supplier }}" class="form-control" placeholder="Supplier" required>
                                         </div>
                                     </div>
                                     <div class="modal-footer">

@@ -15,8 +15,8 @@ use PhpParser\Builder\Trait_;
 class TransaksiController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
+     * Menampilkan halaman transaksi
+     * dan memasukan/memberikan data untuk member dan paket yang ada di outlet autentikasi
      * @return \Illuminate\Http\Response
      */
     public function index()
@@ -28,17 +28,7 @@ class TransaksiController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * untuk menambah/mengirim input data transaksi dan detail transaksi ke database
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -78,39 +68,9 @@ class TransaksiController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
+    * untuk mengubah status di data transaksi
+    * 
+    */
     public function status(request $request){
         $data = Transaksi::where('id',$request->id)->first();
         $data->status = $request->status;
@@ -120,16 +80,9 @@ class TransaksiController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
-
+    * untuk membuat kode invoice terbaru dengan mengambil data transaksii terakhir
+    * 
+    */
     private function generateKodeInvoice(){
         $last = Transaksi::orderBy('id','desc')->first();
         $last = ($last == null?1:$last->id+1);
@@ -137,18 +90,14 @@ class TransaksiController extends Controller
         return $kode;
     }
 
+    /**
+    * untuk membuat faktur/pdf detail transaksi
+    * 
+    */
     public function faktur(Request $request, $id) {
        
         // $request = Detail_Transaksi::find($id);
         $data ['detail_transaksi'] = Detail_Transaksi::where('id_transaksi', $id)->get();
-
-        // $data = Transaksi::find($id);
-        // $data ['detail_transaksi'] = Detail_Transaksi::all();
-        // $data ['t'] = Detail_Transaksi::all();
-        // $t ['detail_transaksi'] = Detail_Transaksi::find($id);
-
-        // echo $t->$id
-        // $data ['outlet'] = Auth::user()->outlet;
 
         $pdf = PDF::loadView('transaksi.faktur',  $data);
         return $pdf->stream();

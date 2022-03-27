@@ -8,14 +8,16 @@ use PhpParser\Node\Stmt\ElseIf_;
 
 class LoginController extends Controller
 {
+    /**
+     * Untuk menampilkan halaman login
+     */
     public function index () {
         return view('login.index');
     }
 
-    public function index2 () {
-        return view('owner.login.index');
-    }
-
+    /**
+     * Untuk mengautektikasi user yang login
+     */
     public function authenticate(Request $request) {
         $credentials = $request->validate([
             'username' => ['required'],
@@ -24,15 +26,7 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            if(auth()->user()->role == 'admin'){
-                $request->session()->regenerate();
-                return redirect()->intended('/');
-            }
-            elseif(auth()->user()->role == 'kasir'){
-                $request->session()->regenerate();
-                return redirect()->intended('/');
-            }
-            elseif(auth()->user()->role == 'owner'){
+            if(auth()->user()){
                 $request->session()->regenerate();
                 return redirect()->intended('/');
             }
@@ -41,6 +35,9 @@ class LoginController extends Controller
         return back()->with('loginError', 'Login Failed!!');
     }
 
+    /**
+     * Untuk logout
+     */
     public function logout(Request $request)
     {
         Auth::logout();

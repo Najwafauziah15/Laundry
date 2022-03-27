@@ -14,11 +14,15 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PenjemputanController;
 
+//barang
+Route::get('barang/cetak', [BarangController::class, 'cetak'])->name('barang_cetak');
+
 // Penjemputan
 Route::get('penjemputan/cetak', [PenjemputanController::class, 'cetak']);
 Route::resource('/penjemputan', PenjemputanController::class);
 Route::post('/status', [PenjemputanController::class ,'status'])->name('status');
-Route::get('export/penjemputan', [PenjemputanController::class, 'export'])->name('export_penjemputan');
+Route::get('export/penjemputan', [PenjemputanController::class, 'export'])->name('barang');
+Route::get('format/penjemputan', [PenjemputanController::class, 'format'])->name('format_penjemputan');
 Route::post('import/penjemputan', [PenjemputanController::class, 'import'])->name('import_penjemputan');
 Route::delete('{id}/penjemputan/delete', [PenjemputanController::class, 'destroy']);
 Route::post('status', [PenjemputanController::class ,'status'])->name('status');
@@ -75,8 +79,12 @@ Route::get('laporan', [LaporanController::class, 'index'])->middleware('auth');
 // Route::get('cetak', [LaporanController::class, 'index2'])->middleware('auth');
 
 // Barang
-Route::resource('barang', BarangController::class);
+Route::resource('barang', BarangController::class)->middleware('auth');
 Route::delete('{id}/barang/delete' ,  [BarangController::class, 'destroy']);
+Route::post('status/barang', [BarangController::class ,'status'])->name('status_barang');
+Route::get('export/barang', [BarangController::class, 'export'])->name('export_barang');
+Route::get('format/barang', [BarangController::class, 'format'])->name('format_barang');
+Route::post('import/barang', [BarangController::class, 'import'])->name('import_barang');
 
 // Karyawan Sorting
-Route::resource('karyawan', KaryawanController::class);
+Route::resource('karyawan', KaryawanController::class)->middleware('auth');

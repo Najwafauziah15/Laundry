@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\Hash;
 
 class RegistrasiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
+    /** 
+     * Untuk menampilkan halaman registrasi dan memberikan data outlet
      *
      * @return \Illuminate\Http\Response
      */
@@ -21,17 +21,7 @@ class RegistrasiController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * menginput/menyimpan data user ke tabel user di database
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -54,50 +44,5 @@ class RegistrasiController extends Controller
         //$request->session()->flash('success', 'registration successfull! please login');
 
         return redirect('/login')->with('success', 'registration successfull! please login');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

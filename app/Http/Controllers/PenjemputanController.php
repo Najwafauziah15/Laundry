@@ -8,6 +8,7 @@ use App\Models\Logging;
 use App\Models\Member;
 use Illuminate\Http\Request;
 use App\Exports\PenjemputanExport;
+use App\Exports\FormatPenjemputanExport;
 use App\Imports\PenjemputanImport;
 use PDF;
 use Barryvdh\DomPDF\PDF as DomPDFPDF;
@@ -17,7 +18,7 @@ use Illuminate\Http\Response;
 class PenjemputanController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Untuk menampilkan halaman penjemputan dan memberikan data penjemputan
      *
      * @return \Illuminate\Http\Response
      */
@@ -30,17 +31,7 @@ class PenjemputanController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * menginput/menyimpan data penjemputan ke tabel penjemputan di database
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -59,7 +50,7 @@ class PenjemputanController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * mengedit/mengubah data penjemputan ke tabel penjemputan di database
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -79,6 +70,10 @@ class PenjemputanController extends Controller
         return redirect('/penjemputan')->with('success', 'Data Berhasil Di Edit');
     }
     
+    /**
+     * mengedit/mengubah status penjemputan ke tabel penjemputan di database
+     *
+     */
     public function status(request $request){
         $data = Penjemputan::where('id',$request->id)->first();
         $data->status = $request->status;
@@ -88,7 +83,7 @@ class PenjemputanController extends Controller
     }
     
     /**
-     * Remove the specified resource from storage.
+     * Menghapus data penjemputan di database dengan mengambil id penjemputan
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -101,11 +96,25 @@ class PenjemputanController extends Controller
         return redirect('/penjemputan')->with('success', 'Penjemputan Berhasil Dihapus');
     }
 
+    /**
+     * export data penjemputan ke excel
+     */
     public function export() 
     {
         return Excel::download(new PenjemputanExport, 'Penjemputan.xlsx');
     }
 
+    /**
+     * export format import data penjemputan ke excel
+     */
+    public function format() 
+    {
+        return Excel::download(new FormatPenjemputanExport, 'Format Penjemputan.xlsx');
+    }
+
+    /**
+     * import data penjemputan di excel ke tabel penjemputan
+     */
     public function import(Request $request)
     {
         $request->validate([
@@ -123,6 +132,9 @@ class PenjemputanController extends Controller
         return redirect()->route('penjemputan.index')->with('success', 'Data Berhasil Di Import');
     }
 
+    /**
+     * export data penjemputan ke pdf
+     */
     public function cetak() {
        
         $data = Penjemputan::all();

@@ -12,7 +12,8 @@ use Maatwebsite\Excel\Facades\Excel;
 class PaketController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Untuk menampilkan halaman paket 
+     * dan memberikan data paket serta outlet
      *
      * @return \Illuminate\Http\Response
      */
@@ -24,17 +25,7 @@ class PaketController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * menginput/menyimpan data paket ke tabel paket di database
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -54,29 +45,7 @@ class PaketController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * mengedit/mengubah data paket ke tabel paket di database
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -98,7 +67,7 @@ class PaketController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Menghapus data paket di database dengan mengambil id paket
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -110,11 +79,17 @@ class PaketController extends Controller
         return redirect('/paket')->with('success', 'Data Paket Berhasil Dihapus');
     }
 
+    /**
+     * export data paket ke excel
+    */
     public function export() 
     {
         return Excel::download(new PaketExport, 'Paket Laundry.xlsx');
     }
 
+    /**
+     * import data paket di excel ke tabel paket
+    */
     public function import(Request $request)
     {
         $request->validate([

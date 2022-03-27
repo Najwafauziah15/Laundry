@@ -6,18 +6,16 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
+    /**
+     * Untuk menampilkan halaman home setelah login
+    */
     public function index () {
         return view('index');
     }
 
-    public function index2 () {
-        return view('kasir.index');
-    }
-
-    public function index3 () {
-        return view('owner.index');
-    }
-
+    /**
+     * Untuk menampilkan halaman home sebelum login
+    */
     public function index4 () {
         return view('home.index');
     }

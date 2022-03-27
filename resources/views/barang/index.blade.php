@@ -11,14 +11,20 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-7 align-self-center">
-                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">DATA BARANG INVENTARIS</h3>
+                        <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">DATA BARANG</h3>
                     </div>
                 </div>
                 <div class="row">
-                    <button type="button" style="width: 115px" class="btn btn-rounded btn-outline-info" data-toggle="modal" data-target="#formInputModal">
+                    <button type="button" style="width: 200px" class="btn btn-rounded btn-outline-info m-2" data-toggle="modal" data-target="#formInputModal">
                         + Tambah
                     </button>
-                    <a href="paket/export" style="width: 115px" class="btn btn-outline-success"><i class="icon-printer"> Excel</i></a>
+                    <a href="{{ route('barang_cetak') }}" target="blank" style="width: 200px" class="btn btn-outline-danger m-2"><i class="icon-arrow-down-circle"> Export Ke PDF</i></a>
+                    <a href="{{ route('export_barang') }}" style="width: 200px" class="btn btn-outline-success m-2"><i class="icon-arrow-down-circle"> Export Ke Excel</i></a>
+                    <a href="{{ route('format_barang') }}" style="width: 200px" class="btn btn-outline-warning m-2"><i class="icon-arrow-down-circle"> Format Import Excel</i></a>
+                    <button type="button" style="width: 200px" class="btn btn-rounded btn-outline-info m-2" data-toggle="modal" data-target="#formImport">
+                        <i class="icon-arrow-up-circle"> Import </i>
+                    </button>
+                    @include('barang.import')
                 </div>
 
                 {{-- alert --}}
@@ -57,23 +63,42 @@
                                         <thead>
                                             <tr>
                                                 <th>No</th>
-                                                <th>Nama</th>
-                                                <th>Merk</th>
-                                                <th>Jumlah</th>
-                                                <th>Kondisi</th>
-                                                <th>Tanggan Pengadaan</th>
+                                                <th>Nama Barang</th>
+                                                <th>Qty</th>
+                                                <th>Harga</th>
+                                                <th>Waktu Beli</th>
+                                                <th>Supplier</th>
+                                                <th>Status Barang</th>
+                                                <th>Waktu Update Status</th>
                                                 <th>Aksi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($barang_inventaris as $b)
+                                            @foreach ($barang as $b)
                                             <tr>
-                                                <td>{{ $i=(isset($i)?++$i:$i=1) }}</td>
+                                                <td>
+                                                    {{ $i=(isset($i)?++$i:$i=1)}}
+                                                    <input type="text" hidden class="id" value="{{ $b->id }}"> 
+                                                </td>
                                                 <td>{{ $b->nama_barang }}</td>
-                                                <td>{{ $b->merk_barang }}</td>
                                                 <td>{{ $b->qty }}</td> 
-                                                <td>{{ $b->kondisi }}</td> 
-                                                <td>{{ $b->tanggal_pengadaan }}</td> 
+                                                <td>{{ $b->harga }}</td> 
+                                                <td>{{ $b->waktu_beli }}</td> 
+                                                <td>{{ $b->supplier }}</td>
+                                                <td>
+                                                    <select name="status" class="status statusBarang form-select" id="one">
+                                                        <option value="diajukan_beli"
+                                                        {{ $b->status == 'diajukan_beli' ? 'selected' : '' }}>Diajukan Beli</option>
+                                                        <option value="habis"
+                                                        {{ $b->status == 'habis' ? 'selected' : '' }}>Habis</option>
+                                                        <option value="tersedia"
+                                                        {{ $b->status == 'tersedia' ? 'selected' : '' }}>Tersedia</option>
+                                                    </select>
+                                                </td>
+                                                <td>
+                                                    {{ $b->waktu_update }} 
+                                                    {{-- <input type="date" hidden class="waktu_update" value="{{ date('Y-m-d') }}">  --}}
+                                                </td> 
                                                 <td> 
                                                     {{-- delete-mobil --}}
                                                     <form action="{{ url($b->id. '/barang/delete')}}" method="POST">
@@ -97,6 +122,11 @@
                         </div>
                     </div>
                 </div>
+                <!-- end table -->
+                <button type="button" style="width: 200px" class="btn btn-rounded btn-outline-info m-2" data-toggle="modal" data-target="#modalLogging">
+                    <i class="icon-search"> Logging </i>
+                </button>
+                @include('barang.logging')
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
@@ -126,28 +156,51 @@
                 'success'
                 )
             }
+            else{
+                $(this).closest('form').submit()
+                Swal.fire(
+                'Can Not Delete!',
+                'Your file can not delete.',
+                'error'
+                )
+            }
             })
         })
 
-        // $('#datatable1').DataTable({
-        //     "responsive":true, "lengthChange":false, "autoWidth":false,
-        //     "button":["copy", "csv", "excel", "pdf", "print"]
-        // }).buttons().container().appendTo('#datatable1_wrapper .col-md-6:eq(0)');
+        //proses ketika status di ubah
+        $('#zero_config').on('change', '.status', function() {
+            let status = $(this).closest('tr').find('.status').val()
+            // let waktu_update = $(this).closest('tr').find('.waktu_update').val()
+            let id = $(this).closest('tr').find('.id').val()
+            let data = {
+            id: id,
+            status: status,
+            // waktu_update: waktu_update,
+            _token: "{{ csrf_token() }}"
+            };
+            let row =  $(this).closest('tr')
+            $.post('{{ route('status_barang') }}', data, function(res) {
+                row.find('td:eq(7)').html(res.waktu_update)
+            })
+            console.log(id);
+            console.log(status);
+            // console.log(waktu_update);
+            // console.log(msg);
+        })
 
-        // $('.datatable').DataTable({
-        //     "responsive":true, "lengthChange":false, "autoWidth":false,
-        //     "button":["copy", "csv", "excel", "pdf", "print"]
-        // }).buttons().container().appendTo('#example_wrapper .col-md-6:eq(0)');
-
-        // $('.datatable2').DataTable({
-        //     "paging":true,
-        //     "lengthChange":false,
-        //     "searching":true,
-        //     "ordering":true,
-        //     "info":true,
-        //     "autoWidth":true,
-        //     "responsive":true,
-        // });
+        // status konfirmasi ubah status
+        $('.statusBarang').change(function(e) {
+            swal.fire({
+                text: "Status Berhasil Diganti",
+                icon: "success",
+                buttons: true,
+                dangerMode: false,
+            })
+            .then((req) => {
+                if (req) $(e.target).closest('form').submit()
+                else swal.close()
+            })
+        });
 
     </script>
 @endpush

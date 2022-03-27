@@ -9,8 +9,21 @@ class Barang extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'id'; // jika primary field bukan id, wajib diubah disini
-    public $incrementing = true; // jika primary key tidak auto increment ubah menjadi false
-    protected $table = 'barang_inventaris';
-    protected $fillable = ['nama_barang', 'merk_barang', 'qty', 'kondisi', 'tanggal_pengadaan'];
+    /**
+     * atribut yang di dilindungi sebagai primary key
+    */
+    protected $primaryKey = 'id';
+    /**
+     * atribut yang di gunakan untuk auto increment atau numeric pada primary key
+    */ 
+    public $incrementing = true; 
+    /**
+     * atribut yang mendefinisikan tabel yang digunakan
+    */
+    protected $table = 'barang';
+    /**
+     * atribut yang di lindungi dan akan di gunakan pada saat pengisian field database barang
+     * atribut ini dapat digunakan secara masal 
+    */
+    protected $fillable = ['nama_barang', 'qty', 'harga', 'waktu_beli', 'supplier', 'status', 'waktu_update'];
 }

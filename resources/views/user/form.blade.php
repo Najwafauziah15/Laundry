@@ -46,6 +46,7 @@
                                                     <option value="{{ $o->id }}">{{ $o->nama }}</option>
                                                     @endforeach
                                                 </select>
+                                                {{-- <input type="text" class="form-control form-select-lg mb-3" name="id_outlet" id="id_outlet" value="{{ auth()->user()->id_outlet }}"> --}}
                                             </div>
                                             <div class="form-group mb3">
                                                 <label for="role" class="form-label">Role</label>

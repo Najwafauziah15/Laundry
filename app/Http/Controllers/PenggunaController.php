@@ -11,7 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class PenggunaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Untuk menampilkan halaman member dan memberikan data member
      *
      * @return \Illuminate\Http\Response
      */
@@ -22,17 +22,7 @@ class PenggunaController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * menginput/menyimpan data member ke tabel member di database
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -52,29 +42,7 @@ class PenggunaController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * mengedit/mengubah data member ke tabel member di database
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -96,7 +64,7 @@ class PenggunaController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Menghapus data member di database dengan mengambil id member
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -108,11 +76,17 @@ class PenggunaController extends Controller
         return redirect('/pengguna')->with('success', 'Data Pengguna Berhasil Dihapus');
     }
 
+    /**
+     * export data member ke excel
+     */
     public function export() 
     {
         return Excel::download(new MemberExport, 'Member Laundry.xlsx');
     }
 
+    /**
+     * import data member di excel ke tabel member
+     */
     public function import(Request $request)
     {
         $request->validate([

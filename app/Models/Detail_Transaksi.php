@@ -9,15 +9,27 @@ class Detail_Transaksi extends Model
 {
     use HasFactory;
     
-    protected $primaryKey = 'id'; // jika primary field bukan id, wajib diubah disini
-    public $incrementing = true; // jika primary key tidak auto increment ubah menjadi false
+    /**
+     * atribut yang mendefinisikan tabel yang digunakan
+    */
+    protected $primaryKey = 'id'; 
+    /**
+     * atribut yang di gunakan untuk auto increment atau numeric pada primary key
+    */
+    public $incrementing = true;
+    /**
+     * atribut yang mendefinisikan tabel yang digunakan
+    */
     protected $table = 'detail_transaksi';
+    /**
+     * atribut yang di lindungi dan akan di gunakan pada saat pengisian field database barang
+     * atribut ini dapat digunakan secara masal 
+    */
     protected $fillable = ['id_transaksi', 'id_paket', 'qty', 'keterangan'];
-
-    // public function produk(){
-    //     return $this->hasOne(Produk::class,'id', 'produk_id');
-    // }
     
+    /**
+     * untuk merelasikan antar table
+    */
     public function transaksi() 
     { 
         return $this->belongsTo(transaksi::class, 'id_transaksi');

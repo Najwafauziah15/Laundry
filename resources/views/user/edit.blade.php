@@ -27,14 +27,17 @@
                                             <input type="text" id="username" name="username" value="{{ $u->username }}" class="form-control" placeholder="Username" required>
                                         </div>
                                         <div class="form-group mb3">
+                                            <label for="username" class="form-label">Id Outlet</label>
                                             <select class="form-control form-select-lg mb-3" aria-label=".form-select-lg example" id="id_outlet" name="id_outlet">
                                                 <option selected>{{ $u->id_outlet }}</option>
                                                 @foreach ($outlet as $o )
                                                 <option value="{{ $o->id }}">{{ $o->nama }}</option>
                                                 @endforeach
                                             </select>
+                                            <input type="text" class="form-control form-select-lg mb-3" name="id_outlet" id="id_outlet" value="{{ auth()->user()->id_outlet }}">
                                         </div>
                                         <div class="form-group mb3">
+                                            <label for="role" class="form-label">Role</label>
                                             <select class="form-control form-select-lg mb-3" aria-label=".form-select-lg example" id="role" name="role">
                                                 <option>{{ $u->role }}</option>
                                                 <option name="role" value="admin">Administrator</option>

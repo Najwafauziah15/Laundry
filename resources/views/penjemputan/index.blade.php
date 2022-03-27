@@ -20,7 +20,7 @@
                     </button>
                     <a href="{{ route('export_penjemputan') }}" style="width: 200px" class="btn btn-outline-success m-2"><i class="icon-arrow-down-circle"> Export Ke Excel</i></a>
                     <a href="penjemputan/cetak" target="blank" style="width: 200px" class="btn btn-outline-danger m-2"><i class="icon-arrow-down-circle"> Export Ke Pdf</i></a>
-                    <a href="penjemputan/format" target="blank" style="width: 200px" class="btn btn-outline-info m-2"><i class="icon-arrow-down-circle"> Format Import Excel</i></a>
+                    <a href="{{ route('format_penjemputan') }}" style="width: 200px" class="btn btn-outline-info m-2"><i class="icon-arrow-down-circle"> Format Import Excel</i></a>
                     <form method="POST" action="{{ route('import_penjemputan') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row">

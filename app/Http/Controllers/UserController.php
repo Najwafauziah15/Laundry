@@ -14,7 +14,8 @@ use Maatwebsite\Excel\Facades\Excel;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Untuk menampilkan halaman user
+     * dengan memberikan data user dan outlet
      *
      * @return \Illuminate\Http\Response
      */
@@ -26,18 +27,8 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
+     * menginput/menyimpan data user ke tabel user di database
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -62,29 +53,7 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * mengedit/mengubah data user ke tabel user di database
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -109,7 +78,7 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Menghapus data user di database dengan mengambil id user
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -121,11 +90,17 @@ class UserController extends Controller
         return redirect('/user')->with('success', 'Data User Berhasil Dihapus');
     }
 
+    /**
+     * export data user ke excel
+    */
     public function export() 
     {
         return Excel::download(new UserExport, 'Pengguna Laundry.xlsx');
     }
 
+    /**
+     * import data user di excel ke tabel user
+    */
     public function import(Request $request)
     {
         $request->validate([

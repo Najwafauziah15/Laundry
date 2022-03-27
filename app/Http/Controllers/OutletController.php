@@ -11,7 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class OutletController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Untuk menampilkan halaman outlet dan memberikan data outlet
      *
      * @return \Illuminate\Http\Response
      */
@@ -22,17 +22,7 @@ class OutletController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * menginput/menyimpan data outlet ke tabel outlet di database
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -51,29 +41,7 @@ class OutletController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
+     * mengedit/mengubah data outlet ke tabel outlet di database
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -94,7 +62,7 @@ class OutletController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Menghapus data outlet di database dengan mengambil id outlet
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -106,11 +74,17 @@ class OutletController extends Controller
         return redirect('/outlet')->with('success', 'Data Outlet Berhasil Dihapus');
     }
 
+    /**
+     * export data outlet ke excel
+    */
     public function export() 
     {
         return Excel::download(new OutletExport, 'Outlet Laundry.xlsx');
     }
 
+    /**
+     * import data outlet di excel ke tabel outlet
+    */
     public function import(Request $request)
     {
         $request->validate([

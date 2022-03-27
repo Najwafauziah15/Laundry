@@ -7,7 +7,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header modal-colored-header bg-info">
-                                <h4 class="modal-title" id="info-header-modalLabel">Tambah Data Barang Inventaris</h4>
+                                <h4 class="modal-title" id="info-header-modalLabel">Tambah Data Barang</h4>
                                 <button type="button" class="close" data-dismiss="modal"
                                     aria-hidden="true">×</button>
                             </div>
@@ -22,26 +22,28 @@
                                             <input type="text" id="nama_barang" name="nama_barang" class="form-control" placeholder="Nama Barang" required>
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label for="merk_barang" class="form-label">Merk Barang</label>
-                                            <input type="text" id="merk_barang" name="merk_barang" class="form-control" placeholder="Merk Barang" required>
-                                        </div>
-                                        <div class="form-group mb-3">
                                             <label for="qty" class="form-label">Jumlah</label>
                                             <input type="number" min="1" id="qty" name="qty" class="form-control" placeholder="Jumlah" required>
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label for="kondisi" class="form-label">Kondisi</label>
-                                            <select class="form-control form-select-lg mb-3" aria-label=".form-select-lg example" id="kondisi" name="kondisi">
-                                            <option>Pilih Kondisi</option>
-                                            <option name="kondisi" value="layak_pakai">Layak Pakai</option>
-                                            <option name="kondisi" value="rusak_ringan">Rusak Ringan</option>
-                                            <option name="kondisi" value="rusak_berat">Rusak Berat</option>
-                                            </select>
+                                            <label for="harga" class="form-label">Harga</label>
+                                            <input type="number" id="harga" name="harga" class="form-control" placeholder="Harga" required>
+                                        </div>
+                                            <input type="date" hidden name="waktu_beli" id="waktu_beli" value="{{ date('Y-m-d h:i:s') }}" required>
+                                        <div class="form-group mb-3">
+                                            <label for="supplier" class="form-label">Supplier</label>
+                                            <input type="text" id="supplier" name="supplier" class="form-control" placeholder="Supplier" required>
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label for="tanggal_pengadaan" class="form-label">Tanggal Pengadaan</label>
-                                            <input type="date" class="date-picker form-control col-md-12 col-xs-12" name="tanggal_pengadaan" required>
+                                            <label for="status" class="form-label">Status</label>
+                                            <select class="form-control form-select-lg mb-3" aria-label=".form-select-lg example" id="status" name="status">
+                                            <option>Pilih Status</option>
+                                            <option name="status" value="diajukan_beli">Diajukan Beli</option>
+                                            <option name="status" value="habis">Habis</option>
+                                            <option name="status" value="tersedia">Tersedia</option>
+                                            </select>
                                         </div>
+                                            <input type="date" hidden name="waktu_update" id="waktu_update" value="{{ date('Y-m-d h:i:s') }}" required>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" id="btn-submit" class="btn btn-info">Tambah Barang</button>
